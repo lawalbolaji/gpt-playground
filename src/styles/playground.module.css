@@ -1,0 +1,14 @@
+.appWrapper {
+  background-color: white;
+  min-height: 100vh;
+  color: var(--gray-800);
+  display: flex;
+  flex-flow: column;
+}
+
+.centerText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+}

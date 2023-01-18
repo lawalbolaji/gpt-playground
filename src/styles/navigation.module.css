@@ -1,0 +1,138 @@
+.main,
+.leftMenu,
+.rightMenu,
+.menuContainer,
+.branding {
+  display: flex;
+}
+
+.main {
+  height: var(--app-nav-height);
+  padding: 0 24px;
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+.leftMenu {
+  align-items: stretch;
+  align-self: stretch;
+  flex: 1 1;
+}
+
+.branding {
+  align-items: center;
+}
+
+.menuContainer {
+  margin: 0 10px 0 24px;
+  max-width: 700px;
+  align-items: center;
+  flex: 0 1;
+  justify-content: space-around;
+}
+
+.navItem {
+  cursor: pointer;
+  /* font-size: 14px; */
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.navItem:not(:first-child) {
+  margin-left: 24px;
+}
+
+.rightMenu {
+  align-items: center;
+  display: inline-flex;
+  position: relative;
+}
+
+.navUpgradeContainer {
+  align-items: center;
+  display: flex;
+  transition: opacity 0.2s;
+}
+
+.navUpgradeBtn {
+  align-items: center;
+  /* color: #10a37f; */
+  display: inline-flex;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 2px 0 0 1em;
+  text-decoration: none;
+}
+
+.navUpgradeBtn img {
+  color: #10a37f;
+}
+
+.navSupportContainer {
+  margin: 3px 0 0 14px;
+}
+
+.navUserContainer {
+  margin-left: 14px;
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.userDetailsText {
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avatar {
+  margin-right: 8px;
+  align-items: center;
+  /* background: var(--gray-800); */
+  /* color: #fff; */
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  line-height: 20px;
+  border-radius: 100px;
+  object-fit: contain;
+}
+
+.avatar img {
+}
+
+.btnNode {
+  display: flex;
+  line-height: 1;
+}
+
+.btnLabelWrap {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.navSupportContainer button {
+  color: var(--gray-600);
+  font-size: 14px;
+  padding: 2px 6px;
+  transition: color 0.3s;
+  background-color: transparent;
+  line-height: 24px;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 400;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+}
+
+.navSupportBtnText {
+  margin-left: 5px !important;
+}
