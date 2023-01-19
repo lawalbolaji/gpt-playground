@@ -18,6 +18,15 @@
   flex-direction: column;
 }
 
+.navMenu {
+  display: flex;
+  height: var(--app-nav-height);
+  padding: 0 24px;
+  font-size: 14px;
+  color: var(--gray-600);
+  border-bottom: 1px solid #ececf1;
+}
+
 .header {
   grid-gap: 12px;
   align-items: center;
@@ -51,8 +60,22 @@
 }
 
 .body {
+  align-items: stretch;
   display: flex;
   flex: 1 1 auto;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  min-height: 0;
+}
+
+.editor {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column;
+  padding: 24px 0 24px 24px;
+}
+
+.rightControls {
+  flex: 0 0 auto;
+  width: 240px;
+  position: relative;
 }

@@ -1,17 +1,8 @@
-.main,
 .leftMenu,
 .rightMenu,
 .menuContainer,
 .branding {
   display: flex;
-}
-
-.main {
-  height: var(--app-nav-height);
-  padding: 0 24px;
-  font-size: 14px;
-  color: var(--gray-600);
-  border-bottom: 1px solid #ececf1;
 }
 
 .leftMenu {

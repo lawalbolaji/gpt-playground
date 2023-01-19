@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function NavigationMenu() {
   return (
-    <div className={style.main}>
+    <>
       <div className={style.leftMenu}>
         <div className={style.branding}>
           <a role="button" href="#">
@@ -61,6 +61,6 @@ export default function NavigationMenu() {
       </div>
 
       <div className="mobile-menu-toggl"></div>
-    </div>
+    </>
   );
 }

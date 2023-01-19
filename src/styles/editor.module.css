@@ -1,0 +1,27 @@
+.editorBody {
+  flex: 1 1;
+  overflow: auto;
+}
+
+.editorFooter {
+  align-items: center;
+  display: flex;
+  margin-top: 1em;
+  position: relative;
+}
+
+.completionsContainer {
+  border: 1px solid var(--gray-300);
+  border-radius: 3px;
+  display: flex;
+  flex-flow: column wrap;
+  overflow: hidden;
+  position: relative;
+  transition: filter 0.3s, -webkit-filter 0.3s;
+  width: 100%;
+  height: 100%;
+
+  /* these are both temporary */
+  justify-content: center;
+  text-align: center;
+}
