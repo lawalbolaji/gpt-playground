@@ -1,0 +1,16 @@
+.btnNormal {
+  background-color: #ececf1;
+  color: #353740;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 6px 12px;
+}

@@ -6,9 +6,53 @@
   flex-flow: column;
 }
 
-.centerText {
+.wrapper {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.container {
+  align-items: stretch;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.header {
+  grid-gap: 12px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  border-bottom: 1px solid var(--gray-100);
+  padding: 16px 24px;
+}
+
+.plgHeaderTitle {
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.plgHeaderActions h4 {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.plgPresetSelectContainer {
+  display: inline-block;
+  margin-bottom: 0;
+  width: 300px;
+}
+
+.plgHeaderActions {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  max-height: 32px;
+}
+
+.body {
+  display: flex;
   flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
 }
