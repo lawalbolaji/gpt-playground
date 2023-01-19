@@ -11,3 +11,16 @@
 .parameterPanel {
   padding: 0 24px 24px;
 }
+
+.controlGrid {
+  grid-gap: 16px;
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+.controlLabel {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}

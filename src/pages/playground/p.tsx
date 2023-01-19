@@ -20,7 +20,7 @@ export default function Playground(props: PlaygroundProp) {
               <h4 className={style.pageTitle}>Playground</h4>
             </div>
             <div className={style.plgPresetSelectContainer}>
-              <SelectContainer />
+              <SelectContainer placeholderText="Select Mode" />
             </div>
             <div className={style.plgHeaderActions}>
               <PlgControlButtons />

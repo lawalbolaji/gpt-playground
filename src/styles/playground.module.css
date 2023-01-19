@@ -42,7 +42,7 @@
 }
 
 .plgHeaderActions h4 {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 24px;
 }
 
@@ -78,4 +78,5 @@
   flex: 0 0 auto;
   width: 240px;
   position: relative;
+  color: var(--gray-600);
 }
