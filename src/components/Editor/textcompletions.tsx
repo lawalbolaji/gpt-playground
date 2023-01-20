@@ -5,6 +5,10 @@ export default function TextCompletions() {
     <div className={style.completionsContainer}>
       <div className={style.completions}>
         <div className={style.editorContainer}>
+
+          
+          {/* will hold placeholder text when no preset mode selection has been made */}
+          <div className={style.draftEditorRoot}></div>
           <div className={style.draftEditorContainer}>
             <div
               className={style.editorContent}
