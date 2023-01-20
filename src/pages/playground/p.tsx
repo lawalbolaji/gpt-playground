@@ -1,9 +1,10 @@
 import Editor from "../../components/Editor/editor";
 import NavigationMenu from "../../components/navigation";
 import PlgControlButtons from "../../components/controls/plgControlButtons";
-import RightControls from "../../components/controls/rightControls";
-import SelectContainer from "../../components/custom-input-fields/selectContainer";
+import RightControls from "../../components/controls/Parameter-tunning-controls/paramTunningControls";
 import style from "../../styles/playground.module.css";
+import { MenuItem } from "@mui/material";
+import ModeSelectContainer from "../../components/controls/modeSelectContainer";
 
 type PlaygroundProp = {};
 
@@ -20,7 +21,12 @@ export default function Playground(props: PlaygroundProp) {
               <h4 className={style.pageTitle}>Playground</h4>
             </div>
             <div className={style.plgPresetSelectContainer}>
-              <SelectContainer placeholderText="Select Mode" />
+              <ModeSelectContainer
+                modes={[
+                  { id: 1, val: "Grammatical Standard English" },
+                  { id: 2, val: "Text to command" },
+                ]}
+              />
             </div>
             <div className={style.plgHeaderActions}>
               <PlgControlButtons />

@@ -1,32 +1,57 @@
-export default function SingleSelectGrid() {
-  const isChecked = true; // will change to track selected option later
+import React, { SyntheticEvent } from "react";
 
+export enum singleSelectOptions {
+  free_from = "free_from",
+  insert = "insert",
+  edit = "edit",
+}
+
+type SingleSelectGridProp = {
+  selectedOption: singleSelectOptions,
+  setSelectedOption: React.Dispatch<React.SetStateAction<singleSelectOptions>>,
+}
+
+export default function SingleSelectGrid({selectedOption, setSelectedOption}: SingleSelectGridProp) {
   return (
     <div className="singleSelectContainer">
       <input
         type="radio"
         id="-radio-freeform"
-        name="-switch"
-        value="freeform"
-        checked={isChecked}
-        onChange={() => {}}
+        checked={selectedOption === singleSelectOptions.free_from}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          e.target.checked && setSelectedOption(singleSelectOptions.free_from);
+        }}
       />
       <label htmlFor="-radio-freeform">
-        <div>
+        <div className="google-icon-wrap">
           <span className="material-symbols-outlined">text_snippet</span>
         </div>
       </label>
 
-      <input type="radio" id="-radio-insert" name="-switch" value="insert" />
+      <input
+        type="radio"
+        id="-radio-insert"
+        checked={selectedOption === singleSelectOptions.insert}
+        onChange={(e: any) => {
+          e.target.checked && setSelectedOption(singleSelectOptions.insert);
+        }}
+      />
       <label htmlFor="-radio-insert">
-        <div>
+        <div className="google-icon-wrap">
           <span className="material-symbols-outlined">download</span>
         </div>
       </label>
 
-      <input type="radio" id="-radio-edit" name="-switch" value="edit" />
+      <input
+        type="radio"
+        id="-radio-edit"
+        checked={selectedOption === singleSelectOptions.edit}
+        onChange={(e: any) => {
+          e.target.checked && setSelectedOption(singleSelectOptions.edit);
+        }}
+      />
       <label htmlFor="-radio-edit">
-        <div>
+        <div className="google-icon-wrap">
           <span className="material-symbols-outlined">auto_fix</span>
         </div>
       </label>
