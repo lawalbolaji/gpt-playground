@@ -1,8 +1,8 @@
-import Editor from "../../components/editor";
+import Editor from "../../components/Editor/editor";
 import NavigationMenu from "../../components/navigation";
-import PlgControlButtons from "../../components/plgControlButtons";
-import RightControls from "../../components/rightControls";
-import SelectContainer from "../../components/selectContainer";
+import PlgControlButtons from "../../components/controls/plgControlButtons";
+import RightControls from "../../components/controls/rightControls";
+import SelectContainer from "../../components/custom-input-fields/selectContainer";
 import style from "../../styles/playground.module.css";
 
 type PlaygroundProp = {};

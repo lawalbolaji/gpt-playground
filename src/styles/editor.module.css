@@ -20,10 +20,45 @@
   transition: filter 0.3s, -webkit-filter 0.3s;
   width: 100%;
   height: 100%;
+  justify-content: space-between;
+}
 
-  /* these are both temporary */
-  justify-content: center;
-  text-align: center;
+.completions {
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1 1;
+  height: 100%;
+  min-height: 0;
+}
+
+.editorContainer {
+  cursor: text;
+  font-size: 16px;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.draftEditorContainer {
+  background-color: hsla(0, 0%, 100%, 0);
+  border-left: 0.1px solid transparent;
+  position: relative;
+  z-index: 1;
+  height: inherit;
+  line-height: 24px;
+  text-align: initial;
+}
+
+.editorContent {
+  outline: none;
+  user-select: text;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere !important;
+  overflow-y: auto;
+  padding: 1em 2.5em 1em 1em;
+  height: inherit;
+  text-align: initial;
+  -webkit-user-modify: read-write-plaintext-only;
 }
 
 .footerLeft {

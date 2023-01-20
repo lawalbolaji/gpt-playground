@@ -1,4 +1,4 @@
-import style from "../styles/buttons.module.css";
+import style from "../../styles/buttons.module.css";
 
 export default function PlgControlButtons(props: {}) {
   return (

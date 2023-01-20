@@ -1,8 +1,8 @@
-import style from "../styles/controls.module.css";
-import SelectContainer from "./selectContainer";
-import SingleSelectGrid from "./singleSelectGrid";
-import Slider from "./Slider";
-import TextInput from "./TextInput";
+import style from "../../styles/controls.module.css";
+import SelectContainer from "../custom-input-fields/selectContainer";
+import SingleSelectGrid from "../custom-input-fields/singleSelectGrid";
+import Slider from "../custom-input-fields/Slider";
+import TextInput from "../custom-input-fields/TextInput";
 
 export default function RightControls() {
   return (

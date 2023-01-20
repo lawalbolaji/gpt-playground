@@ -1,4 +1,4 @@
-import style from "../styles/editor.module.css";
+import style from "../../styles/editor.module.css";
 import TextCompletions from "./textcompletions";
 
 const tokenCount = 100; // will be computed somehow later on
