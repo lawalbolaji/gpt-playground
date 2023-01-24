@@ -1,11 +1,3 @@
-.appWrapper {
-  background-color: white;
-  min-height: 100vh;
-  color: var(--gray-800);
-  display: flex;
-  flex-flow: column;
-}
-
 .wrapper {
   display: flex;
   flex: 1 1 auto;
@@ -16,15 +8,6 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-}
-
-.navMenu {
-  display: flex;
-  height: var(--app-nav-height);
-  padding: 0 24px;
-  font-size: 14px;
-  color: var(--gray-600);
-  border-bottom: 1px solid #ececf1;
 }
 
 .header {

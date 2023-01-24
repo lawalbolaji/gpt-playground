@@ -1,4 +1,5 @@
 import style from "../../styles/editor.module.css";
+import buttonStyle from "../../styles/buttons.module.css";
 import TextCompletions from "./textcompletions";
 
 const tokenCount = 100; // will be computed somehow later on
@@ -12,7 +13,7 @@ export default function Editor() {
       <div className={style.editorFooter}>
         <div className={style.footerLeft}>
           <button
-            className={`${style.btnNormal} ${style.btnSmall} ${style.btnPrimary} ${style.btnPrimary} ${style.btnFilled} ${style.submitBtn}`}
+            className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.bgPrimary} ${style.submitBtn}`}
             tabIndex={0}
             type="button"
           >
@@ -20,38 +21,24 @@ export default function Editor() {
               <span className={style.labelInner}>Submit</span>
             </span>
           </button>
-          <button
-            className={`${style.btnNormal} ${style.btnSmall} ${style.btnDisabled}`}
-            tabIndex={0}
-            type="button"
-          >
+          <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnDisabled}`} tabIndex={0} type="button">
             <span className={style.labelWrap}>
               <span className={style.labelInner}>
-                <span className={`material-symbols-outlined ${style.extIcon}`}>
-                  rotate_left
-                </span>
+                <span className={`material-symbols-outlined ${style.extIcon}`}>rotate_left</span>
               </span>
             </span>
           </button>
-          <button className={`${style.btnNormal} ${style.btnSmall} ${style.btnDisabled}`} tabIndex={0} type="button">
+          <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnDisabled}`} tabIndex={0} type="button">
             <span className={style.labelWrap}>
               <span className={style.labelInner}>
-                <span className={`material-symbols-outlined ${style.extIcon}`}>
-                  rotate_right
-                </span>
+                <span className={`material-symbols-outlined ${style.extIcon}`}>rotate_right</span>
               </span>
             </span>
           </button>
-          <button
-            className={`${style.btnNormal} ${style.btnSmall} ${style.btnMinimal}`}
-            tabIndex={0}
-            type="button"
-          >
+          <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnMinimal}`} tabIndex={0} type="button">
             <span className={style.labelWrap}>
               <span className={style.labelInner}>
-                <span className={`material-symbols-outlined ${style.extIcon}`}>
-                  history
-                </span>
+                <span className={`material-symbols-outlined ${style.extIcon}`}>history</span>
               </span>
             </span>
           </button>

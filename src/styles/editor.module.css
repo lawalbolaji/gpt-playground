@@ -92,39 +92,8 @@
   line-height: 1.5;
 }
 
-.btnNormal {
-  border: none;
-  border-radius: 3px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-flex;
-  font-weight: 400;
-  justify-content: center;
-  position: relative;
-  transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
-  user-select: none;
-}
-
-.btnSmall {
-  font-size: 14px;
-  line-height: 20px;
-  padding: 6px 12px;
-}
-
 .submitBtn {
   flex: 0 0 auto;
-}
-
-.btnPrimary.btnFilled {
-  background-color: #10a37f;
-}
-
-.btnDisabled {
-  cursor: default;
-  pointer-events: none;
-  background-color: #f7f7f8;
-  border-color: transparent;
-  color: #acacbe;
 }
 
 .footerLeft button:not(:first-child) {
@@ -137,9 +106,4 @@
   font-size: 1.4em;
   font-weight: 800;
   line-height: 1.6;
-}
-
-.btnMinimal {
-  background-color: transparent;
-  color: #353740;
 }

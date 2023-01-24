@@ -1,13 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
-
-const inter = Inter({ subsets: ["latin"] });
-
-// this page will basically become a redirect to /login or /playground depending on auth status
+import buttonStyles from "../styles/buttons.module.css";
+import NavigationMenu from "../components/navigation";
+import Playground from "../components/playground";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Home() {
+  const { user, error, isLoading } = useUser();
+
   return (
     <>
       <Head>
@@ -16,78 +16,72 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By <Image src="/vercel.svg" alt="Vercel Logo" className={styles.vercelLogo} width={100} height={24} priority />
-            </a>
-          </div>
-        </div>
+      <main>
+        <div className={styles.appWrapper}>
+          <NavigationMenu isAuthenticated={!!user?.sub} />
 
-        <div className={styles.center}>
-          <Image className={styles.logo} src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
-          <div className={styles.thirteen}>
-            <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-          </div>
-        </div>
+          {!!user?.sub ? (
+            <Playground />
+          ) : (
+            <div className={styles.description}>
+              <div className={styles.bodyText}>
+                <div className="logo">
+                  <a role="button" href="#">
+                    <span className="material-symbols-outlined">diversity_2</span>
+                  </a>
+                </div>
+                <div className="auth-required-message">
+                  <h4 className="message-header">Authentication Required</h4>
+                  <div className="message-body">Please log in to access this page</div>
+                </div>
+                <div className="auth-buttons">
+                  <a href={"/api/auth/login"} className={`${buttonStyles.btn} ${buttonStyles.btnSmall}`}>
+                    <span className="btn-label-wrapper">
+                      <span className="btn-label-inner">Log in</span>
+                    </span>
+                  </a>
+                  <a href={"/api/auth/login"} className={`${buttonStyles.btn} ${buttonStyles.btnSmall}`}>
+                    <span className="btn-label-wrapper">
+                      <span className="btn-label-inner">Sign up</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Find in-depth information about Next.js features and&nbsp;API.</p>
-          </a>
+              <style jsx>
+                {`
+                  a .material-symbols-outlined {
+                    font-size: 36px;
+                    color: var(--gray-600);
+                  }
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-          </a>
+                  h4 {
+                    padding: 8px;
+                  }
 
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Discover and deploy boilerplate example Next.js&nbsp;projects.</p>
-          </a>
+                  .auth-required-message {
+                    margin-bottom: 1em;
+                    margin-top: 4px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-size: 18px;
+                  }
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Instantly deploy your Next.js site to a shareable URL with&nbsp;Vercel.</p>
-          </a>
+                  .auth-buttons {
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+                  }
+
+                  .auth-buttons a {
+                    background-color: #ececf1;
+                    color: #353740;
+                  }
+                `}
+              </style>
+            </div>
+          )}
         </div>
       </main>
     </>

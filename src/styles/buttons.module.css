@@ -1,15 +1,44 @@
-.btnNormal {
-  background-color: #ececf1;
-  color: #353740;
+.btn {
+  text-decoration: none;
   border: none;
   border-radius: 3px;
   box-sizing: border-box;
   cursor: pointer;
+  display: inline-flex;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1.4;
   position: relative;
   transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
   -webkit-user-select: none;
-  -ms-user-select: none;
   user-select: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btnSmall {
+  font-size: 14px;
   line-height: 20px;
   padding: 6px 12px;
 }
+
+.btnDisabled {
+  cursor: default;
+  pointer-events: none;
+  background-color: #f7f7f8;
+  border-color: transparent;
+  color: #acacbe;
+}
+
+.btnMinimal {
+  background-color: transparent;
+  color: #353740;
+}
+
+.bgPrimary {
+  background-color: #10a37f;
+}
+
+

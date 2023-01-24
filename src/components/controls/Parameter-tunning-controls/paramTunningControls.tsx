@@ -21,7 +21,7 @@ enum controlInputNames {
   bestOfCount = "bestOfCount",
 }
 
-export default function RightControls() {
+export default function ParamTunningControls() {
   // right panel controls
   const [temp, setTemp] = React.useState(defaultTemp);
   const [maxLength, setMaxLength] = React.useState(defaultMaxLength);
