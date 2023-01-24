@@ -7,12 +7,7 @@ export default function NavigationMenu() {
       <div className={style.leftMenu}>
         <div className={style.branding}>
           <a role="button" href="#">
-            <Image
-              src="https://super.so/icon/dark/layers.svg"
-              alt=""
-              height="24"
-              width="24"
-            />
+            <span className="material-symbols-outlined">diversity_2</span>
           </a>
         </div>
         <div className={style.menuContainer}>

@@ -3,18 +3,17 @@ import Slider, { SliderProps } from "@mui/material/Slider";
 import { alpha, styled } from "@mui/material/styles";
 
 const StyledMuiSlider = styled(Slider)<SliderProps>(({ theme }) => ({
-  color: "#6e6e80",
+  color: "#c5c5d2",
+  height: "3px",
   "& .MuiSlider-thumb": {
     height: "15px",
     width: "15px",
     border: "2px solid",
     backgroundColor: "white",
     "&:hover, &.Mui-focusVisible": {
-      // boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
       boxShadow: "none",
     },
     "&.Mui-active": {
-      // boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
       boxShadow: "none",
     },
   },
