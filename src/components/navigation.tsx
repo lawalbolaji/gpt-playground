@@ -1,14 +1,11 @@
 import style from "../styles/navigation.module.css";
 import buttonStyle from "../styles/buttons.module.css";
-import { useUser } from "@auth0/nextjs-auth0/client";
 
 type navMenuProp = {
   isAuthenticated: boolean;
 };
 
 export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
-  const { user, error, isLoading } = useUser();
-
   return (
     <div className="navMenu">
       <div className={style.leftMenu}>
@@ -27,8 +24,8 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
           <a href="#" className={style.navItem}>
             Examples
           </a>
-          {!!user?.sub && (
-            <a href="#" className={style.navItem}>
+          {!!isAuthenticated && (
+            <a href="#" className={`${style.navItem} playgroundSelected`}>
               Playground
             </a>
           )}
@@ -39,7 +36,7 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
         {isAuthenticated ? (
           <>
             <div className={style.navUpgradeContainer}>
-              <a role="button" href="" className={style.navUpgradeBtn}>
+              <a role="button" href="#" className={style.navUpgradeBtn}>
                 <span className="material-symbols-outlined">bolt</span>
                 Upgrade
               </a>
@@ -48,9 +45,7 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
               <a href="#">
                 <span className={style.btnLabelWrap}>
                   <span className={style.btnNode}>
-                    <a role="button" href="">
-                      <span className="material-symbols-outlined">help</span>
-                    </a>
+                    <span className="material-symbols-outlined">help</span>
                   </span>
                   <span className={style.navSupportBtnText}>Help &zwj;</span>
                 </span>
@@ -96,6 +91,10 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
       <div className="mobile-menu-toggl"></div>
       <style jsx>
         {`
+          .playgroundSelected {
+            color: #10a37f;
+          }
+
           .navMenu {
             display: flex;
             height: var(--app-nav-height);
