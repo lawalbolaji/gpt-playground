@@ -1,58 +1,53 @@
+import React from "react";
 import style from "../../styles/editor.module.css";
 
+// const dataFeed = ["Hello, welcome to the playground", "", "Another block"];
+const dataFeed: string[] = [""];
+
 export default function TextCompletions() {
+  // const [editorContent, setEditorContent] = React.useState<string>("");
+
+  // const createEditorInjectorNode = () => {
+  //   return { __html: editorContent };
+  // };
+
   return (
     <div className={style.completionsContainer}>
       <div className={style.completions}>
         <div className={style.editorContainer}>
-
-          {/* will hold placeholder text when no preset mode selection has been made */}
-          <div className={style.draftEditorRoot}></div>
-          <div className={style.draftEditorContainer}>
-            <div
-              className={style.editorContent}
-              contentEditable={true}
-              role="textbox"
-              spellCheck={false}
-              suppressContentEditableWarning={true}
-            >
-              <div data-contents={true}>
-                <div
-                  data-block={true}
-                  data-editor="random_id"
-                  data-offset-key="random_id"
-                >
-                  <div data-offset-key="random_id">
-                    <span data-offset-key="random_id">
-                      <span data-text={true}>
-                        Hello, welcome to the playground
-                      </span>
-                    </span>
+          <div className="editorWrapper">
+            <div className="editorRoot">
+              {dataFeed.length === 0 ? (
+                <div className={style.editorPlaceholderRoot}>
+                  <div className="editorPlaceholderInner">
+                    <p>Write a tag line for an ice cream shop</p>
                   </div>
                 </div>
+              ) : (
+                <></>
+              )}
+              <div className={style.draftEditorContainer}>
                 <div
-                  data-block={true}
-                  data-editor="random_id"
-                  data-offset-key="random_id"
+                  className={style.editorContent}
+                  contentEditable={true}
+                  role="textbox"
+                  spellCheck={false}
+                  suppressContentEditableWarning={true}
+                  // dangerouslySetInnerHTML={editorContent.length > 0 ? createEditorInjectorNode() : undefined}
+                  // onBlur={(e) => {
+                  //   console.log(e.currentTarget.innerHTML);
+                  //   setEditorContent(e.currentTarget.innerHTML);
+                  // }}
                 >
-                  <div data-offset-key="random_id">
-                    <span data-offset-key="random_id">
-                      <span data-text={true}>
-                        <br />
-                      </span>
-                    </span>
-                  </div>
-                </div>
-                <div
-                  data-block={true}
-                  data-editor="random_id"
-                  data-offset-key="random_id"
-                >
-                  <div data-offset-key="random_id">
-                    <span data-offset-key="random_id">
-                      <span data-text={true}>Another Block</span>
-                    </span>
-                  </div>
+                  {/* <div data-contents="true">
+                    <div data-block={true} data-editor="{random_id}" data-offset-key="{data_block_id}">
+                      <div data-offset-key="{text_block_id}">
+                        <span data-offset-key="{subtext_id}">
+                          <br data-text="true" />
+                        </span>
+                      </div>
+                    </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -98,6 +93,16 @@ export default function TextCompletions() {
           .labelInner {
             display: flex;
             line-height: 1;
+          }
+
+          .editorWrapper {
+            box-sizing: border-box;
+            height: 100%;
+          }
+
+          .editorRoot {
+            position: relative;
+            height: inherit;
           }
         `}
       </style>

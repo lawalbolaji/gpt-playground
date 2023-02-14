@@ -1,9 +1,10 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import buttonStyles from "../styles/buttons.module.css";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import React from "react";
 import NavigationMenu from "../components/navigation";
 import Playground from "../components/playground";
-import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Home() {
   const { user, error, isLoading } = useUser();

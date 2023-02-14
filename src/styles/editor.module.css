@@ -58,7 +58,9 @@
   padding: 1em 2.5em 1em 1em;
   height: inherit;
   text-align: initial;
-  -webkit-user-modify: read-write-plaintext-only;
+  cursor: text;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .footerLeft {
@@ -106,4 +108,17 @@
   font-size: 1.4em;
   font-weight: 800;
   line-height: 1.6;
+}
+
+.editorPlaceholderRoot {
+  font-weight: 500;
+  overflow-wrap: anywhere !important;
+  overflow-y: auto;
+  padding: 1em;
+  padding-top: 1em;
+  color: #9197a3;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  white-space: pre-wrap;
 }

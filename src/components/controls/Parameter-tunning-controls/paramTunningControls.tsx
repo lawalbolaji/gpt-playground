@@ -1,10 +1,10 @@
 import React, { MouseEvent } from "react";
 import style from "../../../styles/controls.module.css";
 import SingleSelectGrid, { singleSelectOptions } from "../../custom-input-fields/singleSelectGrid";
-import TextInput from "../../custom-input-fields/TextInput";
+import FreeTextWithCheckBox from "../../custom-input-fields/FreeTextWithCheckBox";
 import SliderControl from "./sliderControl";
 
-const defaultTemp = 0.7; // TODO: might load this from some config
+const defaultTemp = 0.7; // TODO: use a reducer
 const defaultMaxLength = 256;
 const defaultTopP = 1;
 const defaultFreqPenalty = 0;
@@ -73,7 +73,7 @@ export default function ParamTunningControls() {
           <div>
             <div className={style.controlLabel}>Stop Sequences</div>
             <div>
-              <TextInput />
+              <FreeTextWithCheckBox />
             </div>
           </div>
           <div>
@@ -135,13 +135,13 @@ export default function ParamTunningControls() {
           <div>
             <div className={style.controlLabel}>Inject Start Text</div>
             <div>
-              <TextInput />
+              <FreeTextWithCheckBox />
             </div>
           </div>
           <div>
             <div className={style.controlLabel}>Inject Restart Text</div>
             <div>
-              <TextInput />
+              <FreeTextWithCheckBox />
             </div>
           </div>
           <div>

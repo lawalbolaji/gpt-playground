@@ -1,8 +1,8 @@
-import ModeSelectContainer from "./controls/modeSelectContainer";
-import ParamTunningControls from "./controls/Parameter-tunning-controls/paramTunningControls";
 import PlgControlButtons from "./controls/plgControlButtons";
 import Editor from "./Editor/editor";
-import style from '../styles/playground.module.css';
+import style from "../styles/playground.module.css";
+import { SearchAndFilter } from "./custom-input-fields/SearchAndFilter";
+import ParamTunningControls from "./controls/Parameter-tunning-controls/paramTunningControls";
 
 type PlaygroundProp = {};
 
@@ -15,10 +15,10 @@ export default function Playground(props: PlaygroundProp) {
             <h4 className={style.pageTitle}>Playground</h4>
           </div>
           <div className={style.plgPresetSelectContainer}>
-            <ModeSelectContainer
-              modes={[
-                { id: 1, val: "Grammatical Standard English" },
-                { id: 2, val: "Text to command" },
+            <SearchAndFilter
+              presets={[
+                { id: 1, label: "Grammatical Standard English" },
+                { id: 2, label: "Summarize for a Second Grader" },
               ]}
             />
           </div>
