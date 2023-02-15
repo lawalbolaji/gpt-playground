@@ -38,7 +38,7 @@ export default function FreeTextWithCheckBox() {
           height: "32px",
           marginLeft: "32px",
           ".MuiInputBase-root": { height: "100%" },
-          ".MuiInputBase-input": { boxSizing: "border-box", height: "100%" },
+          ".MuiInputBase-input": { boxSizing: "border-box", height: "100%", paddingLeft: 0 },
           fieldset: { borderWidth: 0 },
           ".Mui-focused fieldset": { borderWidth: "0 !important" },
         }}
