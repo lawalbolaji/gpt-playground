@@ -1,15 +1,5 @@
 import styled from "@emotion/styled";
-import {
-  Autocomplete,
-  autocompleteClasses,
-  AutocompleteProps,
-  TextField,
-  inputLabelClasses,
-  TextFieldProps,
-  Popper,
-  Box,
-} from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
+import { Autocomplete, autocompleteClasses, AutocompleteProps, TextField, inputLabelClasses, TextFieldProps } from "@mui/material";
 import React from "react";
 
 type SearchAndFilterPropsType = {
@@ -50,7 +40,7 @@ const StyledAutocompletePopper = styled("div")(({ theme }) => ({
 }));
 
 export const StyledAutoComplete = styled(Autocomplete)<AutocompleteProps<PresetType, true, false, false>>(({ theme }) => ({
-  width: 300,
+  width: "100%",
   [`.${inputLabelClasses.root}`]: {
     fontSize: 13,
     transform: "translate(14px, 7px) scale(1)",
@@ -61,7 +51,7 @@ export const StyledAutoComplete = styled(Autocomplete)<AutocompleteProps<PresetT
   },
 }));
 
-const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => ({
+export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => ({
   [`.${autocompleteClasses.input}`]: {
     height: "16px",
     fontSize: 13,

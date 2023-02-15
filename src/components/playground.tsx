@@ -1,8 +1,8 @@
 import PlgControlButtons from "./controls/plgControlButtons";
 import Editor from "./Editor/editor";
 import style from "../styles/playground.module.css";
-import { SearchAndFilter } from "./custom-input-fields/SearchAndFilter";
-import ParamTunningControls from "./controls/Parameter-tunning-controls/paramTunningControls";
+import { SearchAndFilter } from "./custom-components/SearchAndFilter";
+import ParamTunningControls from "./controls/Parameter-tunning-controls/ParamTunningControls";
 
 type PlaygroundProp = {};
 

@@ -1,7 +1,10 @@
 import React, { MouseEvent } from "react";
 import style from "../../../styles/controls.module.css";
-import SingleSelectGrid, { singleSelectOptions } from "../../custom-input-fields/singleSelectGrid";
-import FreeTextWithCheckBox from "../../custom-input-fields/FreeTextWithCheckBox";
+import FreeTextWithCheckBox from "../../custom-components/FreeTextWithCheckBox";
+import { ModelSelect } from "../../custom-components/ModelSelect";
+import StopSequenceTags from "../../custom-components/MultiSelect";
+import { SelectProbabilityOption } from "../../custom-components/RegularSelect";
+import SingleSelectGrid, { singleSelectOptions } from "../../custom-components/SingleSelectGrid";
 import SliderControl from "./sliderControl";
 
 const defaultTemp = 0.7; // TODO: use a reducer
@@ -46,11 +49,15 @@ export default function ParamTunningControls() {
           </div>
           <div>
             <div className={style.controlLabel}>Model</div>
-            <div>{/* <SelectContainer></SelectContainer> */}</div>
+            <div>
+              <ModelSelect />
+            </div>
           </div>
           <div className="temperature-control">
             <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.temp ? "showInputBorder" : undefined}`}
+              className={`${style.controlLabel} ${showInputBorder === controlInputNames.temp ? "showInputBorder" : undefined} ${
+                style.forSlider
+              }`}
               onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.temp)}
               onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
             >
@@ -61,24 +68,28 @@ export default function ParamTunningControls() {
           </div>
           <div>
             <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.maxLength ? "showInputBorder" : undefined}`}
+              className={`${style.controlLabel} ${showInputBorder === controlInputNames.maxLength ? "showInputBorder" : undefined} ${
+                style.forSlider
+              }`}
               onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.maxLength)}
               onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
             >
-              <span className="labelInner">Maximum Length</span>
+              <span className="labelInner">Maximum length</span>
               <input type="text" value={maxLength} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMaxLength(+e.target.value)} />
             </div>
             <SliderControl val={maxLength} setVal={setMaxLength} defaultVal={defaultMaxLength} min={1} max={4000} />
           </div>
           <div>
-            <div className={style.controlLabel}>Stop Sequences</div>
+            <div className={style.controlLabel}>Stop sequences</div>
             <div>
-              <FreeTextWithCheckBox />
+              <StopSequenceTags />
             </div>
           </div>
           <div>
             <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.topP ? "showInputBorder" : undefined}`}
+              className={`${style.controlLabel} ${showInputBorder === controlInputNames.topP ? "showInputBorder" : undefined} ${
+                style.forSlider
+              }`}
               onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.topP)}
               onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
             >
@@ -89,11 +100,13 @@ export default function ParamTunningControls() {
           </div>
           <div>
             <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.freqPenalty ? "showInputBorder" : undefined}`}
+              className={`${style.controlLabel} ${showInputBorder === controlInputNames.freqPenalty ? "showInputBorder" : undefined} ${
+                style.forSlider
+              }`}
               onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.freqPenalty)}
               onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
             >
-              <span className="labelInner">Frequency Penalty</span>
+              <span className="labelInner">Frequency penalty</span>
               <input
                 type="text"
                 value={freqPenalty}
@@ -104,11 +117,13 @@ export default function ParamTunningControls() {
           </div>
           <div>
             <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.presPenalty ? "showInputBorder" : undefined}`}
+              className={`${style.controlLabel} ${showInputBorder === controlInputNames.presPenalty ? "showInputBorder" : undefined} ${
+                style.forSlider
+              }`}
               onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.presPenalty)}
               onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
             >
-              <span className="labelInner">Presence Penalty</span>
+              <span className="labelInner">Presence penalty</span>
               <input
                 type="text"
                 value={presPenalty}
@@ -119,7 +134,9 @@ export default function ParamTunningControls() {
           </div>
           <div>
             <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.bestOfCount ? "showInputBorder" : undefined}`}
+              className={`${style.controlLabel} ${showInputBorder === controlInputNames.bestOfCount ? "showInputBorder" : undefined} ${
+                style.forSlider
+              }`}
               onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.bestOfCount)}
               onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
             >
@@ -133,20 +150,30 @@ export default function ParamTunningControls() {
             <SliderControl val={bestOfCount} setVal={setBestOfCount} defaultVal={defaultBestOfCount} min={1} max={20} />
           </div>
           <div>
-            <div className={style.controlLabel}>Inject Start Text</div>
+            <div className={style.controlLabel}>Inject start text</div>
             <div>
               <FreeTextWithCheckBox />
             </div>
           </div>
           <div>
-            <div className={style.controlLabel}>Inject Restart Text</div>
+            <div className={style.controlLabel}>Inject restart text</div>
             <div>
               <FreeTextWithCheckBox />
             </div>
           </div>
           <div>
-            <div className={style.controlLabel}>Show Probabilities</div>
-            <div>{/* <SelectContainer></SelectContainer> */}</div>
+            <div className={style.controlLabel}>Show probabilities</div>
+            <div>
+              {" "}
+              <SelectProbabilityOption
+                options={[
+                  { id: 1, label: "Off" },
+                  { id: 2, label: "Most likely" },
+                  { id: 3, label: "Least likely" },
+                  { id: 4, label: "Full spectrum" },
+                ]}
+              />{" "}
+            </div>
           </div>
         </div>
       </div>

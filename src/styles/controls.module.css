@@ -19,10 +19,14 @@
 }
 
 .controlLabel {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   display: flex;
   align-items: center;
+}
+
+.forSlider {
+  margin-bottom: 0;
 }
