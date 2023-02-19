@@ -1,6 +1,17 @@
 import styled from "@emotion/styled";
-import { Autocomplete, autocompleteClasses, AutocompleteProps, TextField, inputLabelClasses, TextFieldProps } from "@mui/material";
+import { Autocomplete, autocompleteClasses, TextField, inputLabelClasses, TextFieldProps, AutocompleteProps } from "@mui/material";
 import React from "react";
+
+type PopperComponentProps = {
+  anchorEl?: any;
+  disablePortal?: boolean;
+  open: boolean;
+};
+
+// TODO: add a label to the dropdowns e.g Examples
+const PopperComponent = ({ disablePortal, anchorEl, open, ...other }: PopperComponentProps) => {
+  return open ? <StyledAutocompletePopper {...other} /> : null;
+};
 
 type SearchAndFilterPropsType = {
   presets: PresetType[];
@@ -11,10 +22,23 @@ type PresetType = {
   label: string;
 };
 
-type PopperComponentProps = {
-  anchorEl?: any;
-  disablePortal?: boolean;
-  open: boolean;
+export const SearchAndFilter = ({ presets }: SearchAndFilterPropsType) => {
+  const [filled, setFilled] = React.useState(false);
+
+  return (
+    <StyledAutoComplete
+      size="small"
+      disablePortal
+      openOnFocus
+      options={presets}
+      noOptionsText="No presets"
+      renderInput={(params) => <StyledInput {...params} InputLabelProps={{ filled }} label="Load a preset..." />}
+      PopperComponent={PopperComponent}
+      onChange={(event: React.SyntheticEvent, val: unknown) => {
+        setFilled(!!val);
+      }}
+    />
+  );
 };
 
 const StyledAutocompletePopper = styled("div")(({ theme }) => ({
@@ -39,18 +63,6 @@ const StyledAutocompletePopper = styled("div")(({ theme }) => ({
   },
 }));
 
-export const StyledAutoComplete = styled(Autocomplete)<AutocompleteProps<PresetType, true, false, false>>(({ theme }) => ({
-  width: "100%",
-  [`.${inputLabelClasses.root}`]: {
-    fontSize: 13,
-    transform: "translate(14px, 7px) scale(1)",
-  },
-  [`.${inputLabelClasses.root}.${inputLabelClasses.focused}`]: {
-    color: "#556cd6",
-    transform: "translate(14px, -9px) scale(0.75)",
-  },
-}));
-
 export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => ({
   [`.${autocompleteClasses.input}`]: {
     height: "16px",
@@ -58,21 +70,18 @@ export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => ({
   },
 }));
 
-// TODO: add a label to the dropdowns e.g Examples
-const PopperComponent = ({ disablePortal, anchorEl, open, ...other }: PopperComponentProps) => {
-  return open ? <StyledAutocompletePopper {...other} /> : null;
-};
-
-export const SearchAndFilter = ({ presets }: SearchAndFilterPropsType) => {
-  return (
-    <StyledAutoComplete
-      size="small"
-      disablePortal
-      openOnFocus
-      options={presets}
-      noOptionsText="No presets"
-      renderInput={(params) => <StyledInput {...params} label="Load a preset..." />}
-      PopperComponent={PopperComponent}
-    />
-  );
-};
+export const StyledAutoComplete = styled(Autocomplete)<AutocompleteProps<any, false, false, false>>(({ theme }) => ({
+  width: "100%",
+  [`.${inputLabelClasses.root}`]: {
+    fontSize: 13,
+  },
+  [`.${inputLabelClasses.root}:not(.${inputLabelClasses.focused})`]: {
+    transform: "translate(10px, 8px) scale(1)",
+  },
+  [`.${inputLabelClasses.root}.MuiFormLabel-filled`]: {
+    transform: "translate(14px, -9px) scale(0.9)",
+  },
+  [`.${inputLabelClasses.root}.${inputLabelClasses.focused}`]: {
+    transform: "translate(14px, -9px) scale(0.9)",
+  },
+}));
