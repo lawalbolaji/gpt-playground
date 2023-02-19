@@ -1,5 +1,10 @@
 import style from "../styles/navigation.module.css";
 import buttonStyle from "../styles/buttons.module.css";
+import BoltIcon from "@mui/icons-material/Bolt";
+import Diversity2Icon from "@mui/icons-material/Diversity2";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 type navMenuProp = {
   isAuthenticated: boolean;
@@ -11,7 +16,7 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
       <div className={style.leftMenu}>
         <div className={style.branding}>
           <a role="button" href="#">
-            <span className="material-symbols-outlined">diversity_2</span>
+            <Diversity2Icon />
           </a>
         </div>
         <div className={style.menuContainer}>
@@ -37,7 +42,7 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
           <>
             <div className={style.navUpgradeContainer}>
               <a role="button" href="#" className={style.navUpgradeBtn}>
-                <span className="material-symbols-outlined">bolt</span>
+                <BoltIcon />
                 Upgrade
               </a>
             </div>
@@ -45,7 +50,7 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
               <a href="#">
                 <span className={style.btnLabelWrap}>
                   <span className={style.btnNode}>
-                    <span className="material-symbols-outlined">help</span>
+                    <HelpOutlineOutlinedIcon />
                   </span>
                   <span className={style.navSupportBtnText}>Help &zwj;</span>
                 </span>
@@ -53,7 +58,7 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
             </div>
             <div className={style.navUserContainer}>
               <div className={style.avatar}>
-                <span className="material-symbols-outlined">account_circle</span>
+                <AccountCircleOutlinedIcon />
               </div>
               <div className={style.userDetails}>
                 <div className={style.userDetailsText}>Personal</div>
@@ -63,7 +68,7 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
               <a href={"/api/auth/logout"} role="button">
                 <span className={style.btnLabelWrap}>
                   <span className={style.btnNode}>
-                    <span className="material-symbols-outlined">logout</span>{" "}
+                    <LogoutOutlinedIcon />
                   </span>
                   <span className={style.navSupportBtnText}>logout &zwj;</span>
                 </span>

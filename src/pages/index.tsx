@@ -5,6 +5,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
 import NavigationMenu from "../components/navigation";
 import Playground from "../components/playground";
+import Diversity2Icon from "@mui/icons-material/Diversity2";
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
@@ -28,7 +29,7 @@ export default function Home() {
               <div className={styles.bodyText}>
                 <div className="logo">
                   <a role="button" href="#">
-                    <span className="material-symbols-outlined">diversity_2</span>
+                    <Diversity2Icon />
                   </a>
                 </div>
                 <div className="auth-required-message">

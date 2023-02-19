@@ -1,4 +1,7 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
+import CompleteModeIcon from "@mui/icons-material/TextSnippetOutlined";
+import InsertModeIcon from "@mui/icons-material/FileDownloadOutlined";
+import EditModeIcon from "@mui/icons-material/AutoFixHighOutlined";
 
 export enum singleSelectOptions {
   free_from = "free_from",
@@ -7,11 +10,11 @@ export enum singleSelectOptions {
 }
 
 type SingleSelectGridProp = {
-  selectedOption: singleSelectOptions,
-  setSelectedOption: React.Dispatch<React.SetStateAction<singleSelectOptions>>,
-}
+  selectedOption: singleSelectOptions;
+  setSelectedOption: React.Dispatch<React.SetStateAction<singleSelectOptions>>;
+};
 
-export default function SingleSelectGrid({selectedOption, setSelectedOption}: SingleSelectGridProp) {
+export default function SingleSelectGrid({ selectedOption, setSelectedOption }: SingleSelectGridProp) {
   return (
     <div className="singleSelectContainer">
       <input
@@ -24,7 +27,7 @@ export default function SingleSelectGrid({selectedOption, setSelectedOption}: Si
       />
       <label htmlFor="-radio-freeform">
         <div className="google-icon-wrap">
-          <span className="material-symbols-outlined">text_snippet</span>
+          <CompleteModeIcon />
         </div>
       </label>
 
@@ -38,7 +41,7 @@ export default function SingleSelectGrid({selectedOption, setSelectedOption}: Si
       />
       <label htmlFor="-radio-insert">
         <div className="google-icon-wrap">
-          <span className="material-symbols-outlined">download</span>
+          <InsertModeIcon />
         </div>
       </label>
 
@@ -52,7 +55,7 @@ export default function SingleSelectGrid({selectedOption, setSelectedOption}: Si
       />
       <label htmlFor="-radio-edit">
         <div className="google-icon-wrap">
-          <span className="material-symbols-outlined">auto_fix</span>
+          <EditModeIcon />
         </div>
       </label>
 

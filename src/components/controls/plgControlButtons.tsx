@@ -1,4 +1,5 @@
 import style from "../../styles/buttons.module.css";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 export default function PlgControlButtons(props: {}) {
   return (
@@ -19,8 +20,8 @@ export default function PlgControlButtons(props: {}) {
         </span>
       </button>
       <button tabIndex={0} className={`${style.btn} ${style.btnSmall} plgControlBtn`}>
-        <span className={style.labelWrapper}>
-          <span className="material-symbols-outlined">more_horiz</span>
+        <span className={`${style.labelWrapper} horz-btn`}>
+          <MoreHorizIcon sx={{ display: "inline-flex", alignSelf: "center", fontSize: "1rem" }} />
         </span>
       </button>
 
@@ -29,6 +30,11 @@ export default function PlgControlButtons(props: {}) {
           .plgControlBtn {
             background-color: #ececf1;
             color: #353740;
+          }
+
+          .horz-btn {
+            display: flex;
+            align-self: center;
           }
         `}
       </style>

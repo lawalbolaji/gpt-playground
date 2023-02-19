@@ -1,6 +1,9 @@
 import style from "../../styles/editor.module.css";
 import buttonStyle from "../../styles/buttons.module.css";
 import TextCompletions from "./textcompletions";
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
+import RestoreIcon from "@mui/icons-material/Restore";
 
 const tokenCount = 100; // will be computed somehow later on
 
@@ -24,21 +27,21 @@ export default function Editor() {
           <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnDisabled}`} tabIndex={0} type="button">
             <span className={style.labelWrap}>
               <span className={style.labelInner}>
-                <span className={`material-symbols-outlined ${style.extIcon}`}>rotate_left</span>
+                <RotateLeftIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
               </span>
             </span>
           </button>
           <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnDisabled}`} tabIndex={0} type="button">
             <span className={style.labelWrap}>
               <span className={style.labelInner}>
-                <span className={`material-symbols-outlined ${style.extIcon}`}>rotate_right</span>
+                <RotateRightIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
               </span>
             </span>
           </button>
           <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnMinimal}`} tabIndex={0} type="button">
             <span className={style.labelWrap}>
               <span className={style.labelInner}>
-                <span className={`material-symbols-outlined ${style.extIcon}`}>history</span>
+                <RestoreIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
               </span>
             </span>
           </button>

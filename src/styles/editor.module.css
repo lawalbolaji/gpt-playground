@@ -100,8 +100,6 @@
 
 .footerLeft button:not(:first-child) {
   margin-left: 8px;
-  padding-top: 0px;
-  padding-bottom: 0px;
 }
 
 .extIcon {
@@ -121,4 +119,9 @@
   width: 100%;
   z-index: 1;
   white-space: pre-wrap;
+}
+
+.labelInner {
+  display: flex;
+  align-items: center;
 }
