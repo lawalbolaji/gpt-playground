@@ -116,6 +116,7 @@
   padding-top: 1em;
   color: #9197a3;
   position: absolute;
+  top: 0;
   width: 100%;
   z-index: 1;
   white-space: pre-wrap;
@@ -124,4 +125,12 @@
 .labelInner {
   display: flex;
   align-items: center;
+}
+
+.contentEditableContainer {
+  height: 100%;
+  padding: 1em;
+  user-select: text;
+  position: relative;
+  z-index: 2;
 }

@@ -1,5 +1,5 @@
 import PlgControlButtons from "./controls/plgControlButtons";
-import Editor from "./Editor/editor";
+import EditorBox from "./Editor/editorbox";
 import style from "../styles/playground.module.css";
 import { SearchAndFilter } from "./custom-components/SearchAndFilter";
 import ParamTunningControls from "./controls/Parameter-tunning-controls/ParamTunningControls";
@@ -28,7 +28,7 @@ export default function Playground(props: PlaygroundProp) {
         </div>
         <div className={style.body}>
           <div className={style.editor}>
-            <Editor />
+            <EditorBox />
           </div>
           <div className={style.rightControls}>
             <ParamTunningControls />

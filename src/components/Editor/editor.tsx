@@ -1,57 +1,43 @@
+import React from "react";
 import style from "../../styles/editor.module.css";
-import buttonStyle from "../../styles/buttons.module.css";
-import TextCompletions from "./textcompletions";
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import RestoreIcon from "@mui/icons-material/Restore";
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { LexicalEditor } from "lexical";
+import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import VoiceInputComponent from "./voice-input";
 
-const tokenCount = 100; // will be computed somehow later on
+const theme = {
+  // Theme styling goes here
+};
 
-export default function Editor() {
+function onError(error: Error, editor: LexicalEditor) {
+  console.error({ error, editor });
+}
+
+export default function Editor(props: {}) {
+  const initialConfig = {
+    namespace: "MyEditor",
+    theme,
+    onError,
+  };
+
   return (
-    <>
-      <div className={style.editorBody}>
-        <TextCompletions />
+    <div className={style.completionsContainer}>
+      <div className={style.completions}>
+        <LexicalComposer initialConfig={initialConfig}>
+          <PlainTextPlugin
+            contentEditable={<ContentEditable className={style.contentEditableContainer} />}
+            placeholder={
+              <div className={style.editorPlaceholderRoot}>
+                <div>Write a tag line for an ice cream shop</div>
+              </div>
+            }
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+        </LexicalComposer>
       </div>
-      <div className={style.editorFooter}>
-        <div className={style.footerLeft}>
-          <button
-            className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.bgPrimary} ${style.submitBtn}`}
-            tabIndex={0}
-            type="button"
-          >
-            <span className={style.labelWrap}>
-              <span className={style.labelInner}>Submit</span>
-            </span>
-          </button>
-          <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnDisabled}`} tabIndex={0} type="button">
-            <span className={style.labelWrap}>
-              <span className={style.labelInner}>
-                <RotateLeftIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
-              </span>
-            </span>
-          </button>
-          <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnDisabled}`} tabIndex={0} type="button">
-            <span className={style.labelWrap}>
-              <span className={style.labelInner}>
-                <RotateRightIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
-              </span>
-            </span>
-          </button>
-          <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnMinimal}`} tabIndex={0} type="button">
-            <span className={style.labelWrap}>
-              <span className={style.labelInner}>
-                <RestoreIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
-              </span>
-            </span>
-          </button>
-        </div>
-        <div className={style.footerRight}>
-          <div className={style.tokenCounter}>
-            <div>{tokenCount}</div>
-          </div>
-        </div>
-      </div>
-    </>
+      <VoiceInputComponent />
+    </div>
   );
 }
