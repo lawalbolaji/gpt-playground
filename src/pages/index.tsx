@@ -3,9 +3,9 @@ import styles from "@/styles/Home.module.css";
 import buttonStyles from "../styles/buttons.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
-import NavigationMenu from "../components/navigation";
-import Playground from "../components/playground";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
+import NavigationMenu from "../components/Navigation";
+import Playground from "../components/Playground";
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
