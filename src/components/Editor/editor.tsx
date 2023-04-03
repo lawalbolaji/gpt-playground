@@ -8,7 +8,7 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { EditorState, LexicalEditor } from "lexical";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import VoiceInputComponent from "./voice-input";
+import VoiceInputComponent from "./voiceInput";
 
 const theme = {
   //add themes here
