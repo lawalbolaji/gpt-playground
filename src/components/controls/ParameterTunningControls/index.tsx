@@ -1,10 +1,10 @@
 import React, { MouseEvent } from "react";
 import style from "../../../styles/controls.module.css";
-import FreeTextWithCheckBox from "../../custom-components/FreeTextWithCheckBox";
-import { ModelSelect } from "../../custom-components/ModelSelect";
-import StopSequenceTags from "../../custom-components/MultiSelect";
-import { SelectProbabilityOption } from "../../custom-components/RegularSelect";
-import SingleSelectGrid, { singleSelectOptions } from "../../custom-components/SingleSelectGrid";
+import FreeTextWithCheckBox from "../../customComponents/FreeTextWithCheckBox";
+import { ModelSelect } from "../../customComponents/ModelSelect";
+import StopSequenceTags from "../../customComponents/MultiSelect";
+import { SelectProbabilityOption } from "../../customComponents/RegularSelect";
+import SingleSelectGrid, { singleSelectOptions } from "../../customComponents/SingleSelectGrid";
 import SliderControl from "./sliderControl";
 
 const defaultTemp = 0.7; // TODO: use a reducer
