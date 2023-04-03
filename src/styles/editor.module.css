@@ -129,7 +129,7 @@
 
 .contentEditableContainer {
   height: 100%;
-  padding: 1em;
+  padding: 1em 2em 1em 1em;
   user-select: text;
   position: relative;
   z-index: 2;

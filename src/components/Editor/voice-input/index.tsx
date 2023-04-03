@@ -1,6 +1,11 @@
 export default function VoiceInputComponent(props: {}) {
   return (
-    <button className="voiceInput">
+    <button
+      className="voiceInput"
+      onClick={(e: any) => {
+        console.log("Hello, we are working hard to bring this feature to you soon!");
+      }}
+    >
       <span className="labelWrap">
         <span className="labelInner">
           <span className="material-symbols-outlined">mic</span>
@@ -12,7 +17,7 @@ export default function VoiceInputComponent(props: {}) {
             position: absolute;
             right: 11px;
             top: 11px;
-            z-index: 1;
+            z-index: 2;
             color: #10a37f;
             background-color: transparent;
             text-decoration: none;
