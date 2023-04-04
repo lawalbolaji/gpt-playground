@@ -1,7 +1,13 @@
 import style from "../../styles/buttons.module.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SettingsIcon from "@mui/icons-material/Settings";
 
-export default function PlgControlButtons(props: {}) {
+type plgControlButtonProps = {
+  isOnMobileScreen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function PlgControlButtons({ isOnMobileScreen, setOpen }: plgControlButtonProps) {
   return (
     <>
       <button tabIndex={0} className={`${style.btn} ${style.btnSmall} plgControlBtn`}>
@@ -24,6 +30,15 @@ export default function PlgControlButtons(props: {}) {
           <MoreHorizIcon sx={{ display: "inline-flex", alignSelf: "center", fontSize: "1rem" }} />
         </span>
       </button>
+      {isOnMobileScreen ? (
+        <button tabIndex={0} className={`${style.btn} ${style.btnSmall} plgControlBtn`} onClick={() => setOpen(true)}>
+          <span className={`${style.labelWrapper} horz-btn`}>
+            <SettingsIcon sx={{ fontSize: "1rem" }} />
+          </span>
+        </button>
+      ) : (
+        <></>
+      )}
 
       <style jsx>
         {`

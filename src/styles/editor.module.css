@@ -134,3 +134,14 @@
   position: relative;
   z-index: 2;
 }
+
+@media screen and (max-width: 649px) {
+  .contentEditableContainer:focus {
+    outline: 0px solid transparent;
+  }
+
+  .editorFooter {
+    margin-top: 0;
+    padding: 0.6em 1em;
+  }
+}

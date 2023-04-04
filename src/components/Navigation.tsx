@@ -5,12 +5,14 @@ import Diversity2Icon from "@mui/icons-material/Diversity2";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
 
 type navMenuProp = {
   isAuthenticated: boolean;
+  isOnMobileScreen: boolean;
 };
 
-export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
+export default function NavigationMenu({ isAuthenticated, isOnMobileScreen }: navMenuProp) {
   return (
     <div className="navMenu">
       <div className={style.leftMenu}>
@@ -19,79 +21,96 @@ export default function NavigationMenu({ isAuthenticated }: navMenuProp) {
             <Diversity2Icon />
           </a>
         </div>
-        <div className={style.menuContainer}>
-          <a href="#" className={style.navItem}>
-            Overview
-          </a>
-          <a href="#" className={style.navItem}>
-            Documentation
-          </a>
-          <a href="#" className={style.navItem}>
-            Examples
-          </a>
-          {!!isAuthenticated && (
-            <a href="#" className={`${style.navItem} playgroundSelected`}>
-              Playground
+
+        {isOnMobileScreen ? (
+          <></>
+        ) : (
+          <div className={style.menuContainer}>
+            <a href="#" className={style.navItem}>
+              Overview
             </a>
-          )}
-        </div>
+            <a href="#" className={style.navItem}>
+              Documentation
+            </a>
+            <a href="#" className={style.navItem}>
+              Examples
+            </a>
+            {!!isAuthenticated && (
+              <a href="#" className={`${style.navItem} playgroundSelected`}>
+                Playground
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
-      <div className={style.rightMenu}>
-        {isAuthenticated ? (
-          <>
-            <div className={style.navUpgradeContainer}>
-              <a role="button" href="#" className={style.navUpgradeBtn}>
-                <BoltIcon />
-                Upgrade
-              </a>
-            </div>
-            <div className={style.navSupportContainer}>
-              <a href="#">
-                <span className={style.btnLabelWrap}>
-                  <span className={style.btnNode}>
-                    <HelpOutlineOutlinedIcon />
-                  </span>
-                  <span className={style.navSupportBtnText}>Help &zwj;</span>
-                </span>
-              </a>
-            </div>
-            <div className={style.navUserContainer}>
-              <div className={style.avatar}>
-                <AccountCircleOutlinedIcon />
+      {isOnMobileScreen ? (
+        <div className={style.rightMenu}>
+          <div>
+            <a href="#" role="button">
+              <span className={style.btnNode}>
+                <MenuIcon sx={{ fontSize: "2em" }} />
+              </span>
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className={style.rightMenu}>
+          {isAuthenticated ? (
+            <>
+              <div className={style.navUpgradeContainer}>
+                <a role="button" href="#" className={style.navUpgradeBtn}>
+                  <BoltIcon />
+                  Upgrade
+                </a>
               </div>
-              <div className={style.userDetails}>
-                <div className={style.userDetailsText}>Personal</div>
-              </div>
-            </div>
-            <div className={style.navSupportContainer}>
-              <a href={"/api/auth/logout"} role="button">
-                <span className={style.btnLabelWrap}>
-                  <span className={style.btnNode}>
-                    <LogoutOutlinedIcon />
-                  </span>
-                  <span className={style.navSupportBtnText}>logout &zwj;</span>
-                </span>
-              </a>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="auth-header-menu-wrapper">
-              <div className="auth-header-menu">
-                <div className="auth-login-header">
-                  <a href={"/api/auth/login"}>Log in</a>
-                </div>
-                <a className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.bgPrimary} auth-signup-btn`}>
-                  <span className="btn-label-wrapper">
-                    <span className="btn-label-inner">Sign up &zwj;</span>
+              <div className={style.navSupportContainer}>
+                <a href="#">
+                  <span className={style.btnLabelWrap}>
+                    <span className={style.btnNode}>
+                      <HelpOutlineOutlinedIcon />
+                    </span>
+                    <span className={style.navSupportBtnText}>Help &zwj;</span>
                   </span>
                 </a>
               </div>
-            </div>
-          </>
-        )}
-      </div>
+              <div className={style.navUserContainer}>
+                <div className={style.avatar}>
+                  <AccountCircleOutlinedIcon />
+                </div>
+                <div className={style.userDetails}>
+                  <div className={style.userDetailsText}>Personal</div>
+                </div>
+              </div>
+              <div className={style.navSupportContainer}>
+                <a href={"/api/auth/logout"} role="button">
+                  <span className={style.btnLabelWrap}>
+                    <span className={style.btnNode}>
+                      <LogoutOutlinedIcon />
+                    </span>
+                    <span className={style.navSupportBtnText}>logout &zwj;</span>
+                  </span>
+                </a>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="auth-header-menu-wrapper">
+                <div className="auth-header-menu">
+                  <div className="auth-login-header">
+                    <a href={"/api/auth/login"}>Log in</a>
+                  </div>
+                  <a className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.bgPrimary} auth-signup-btn`}>
+                    <span className="btn-label-wrapper">
+                      <span className="btn-label-inner">Sign up &zwj;</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
       <div className="mobile-menu-toggl"></div>
       <style jsx>

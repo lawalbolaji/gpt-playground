@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex: 1 1 auto;
+  width: 100%;
 }
 
 .container {
@@ -8,6 +9,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  width: 100%;
 }
 
 .header {
@@ -17,6 +19,21 @@
   grid-template-columns: 1fr auto auto;
   border-bottom: 1px solid var(--gray-100);
   padding: 16px 24px;
+}
+
+@media screen and (max-width: 649px) {
+  .header {
+    grid-gap: 8px;
+    display: grid;
+    border-bottom: none;
+    grid-template-columns: 100%;
+    margin-bottom: 10px;
+    padding: 1em 1em 0;
+  }
+
+  .editor {
+    padding: 0 !important;
+  }
 }
 
 .plgHeaderTitle {

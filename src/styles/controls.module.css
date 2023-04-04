@@ -1,11 +1,14 @@
 .rightControlsContainer {
-  bottom: 0;
-  left: 0;
   overflow: auto;
   padding-top: 24px;
-  position: absolute;
-  right: 0;
-  top: 0;
+}
+
+@media screen and (max-width: 649px) {
+  .rightControlsContainer {
+    overflow: auto;
+    padding-top: 24px;
+    width: 250px;
+  }
 }
 
 .parameterPanel {

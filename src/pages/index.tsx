@@ -6,9 +6,11 @@ import React from "react";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import NavigationMenu from "../components/Navigation";
 import Playground from "../components/Playground";
+import { useMediaQuery } from "@mui/material";
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
+  const isOnMobileScreen = useMediaQuery("(max-width: 649px)");
 
   return (
     <>
@@ -20,10 +22,10 @@ export default function Home() {
       </Head>
       <main>
         <div className={styles.appWrapper}>
-          <NavigationMenu isAuthenticated={!!user?.sub} />
+          <NavigationMenu isAuthenticated={!!user?.sub} isOnMobileScreen={isOnMobileScreen}/>
 
           {!!user?.sub ? (
-            <Playground />
+            <Playground isOnMobileScreen={isOnMobileScreen}/>
           ) : (
             <div className={styles.description}>
               <div className={styles.bodyText}>
@@ -85,6 +87,8 @@ export default function Home() {
             </div>
           )}
         </div>
+
+        {/* TODO: you need a modal here */}
       </main>
     </>
   );

@@ -30,7 +30,11 @@ function getPlainTextFromLexicalNodes(editorState: any) {
   return plainTextPrompt;
 }
 
-export default function EditorBox() {
+type EditorBoxProp = {
+  isOnMobileScreen: boolean;
+};
+
+export default function EditorBox({ isOnMobileScreen }: EditorBoxProp) {
   const editorStateRef = useRef<EditorState>();
   const editorRef = useRef<LexicalEditor>();
 
@@ -106,13 +110,17 @@ export default function EditorBox() {
               </span>
             </span>
           </button>
-          <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnMinimal}`} tabIndex={0} type="button">
-            <span className={style.labelWrap}>
-              <span className={style.labelInner}>
-                <RestoreIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
+          {isOnMobileScreen ? (
+            <></>
+          ) : (
+            <button className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.btnMinimal}`} tabIndex={0} type="button">
+              <span className={style.labelWrap}>
+                <span className={style.labelInner}>
+                  <RestoreIcon sx={{ fontSize: "1.3rem", display: "inline-flex", alignItems: "center" }} />
+                </span>
               </span>
-            </span>
-          </button>
+            </button>
+          )}
         </div>
         <div className={style.footerRight}>
           <div className={style.tokenCounter}>

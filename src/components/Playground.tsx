@@ -3,10 +3,16 @@ import EditorBox from "./Editor/editorbox";
 import style from "../styles/playground.module.css";
 import { SearchAndFilter } from "./customComponents/SearchAndFilter";
 import ParamTunningControls from "./controls/ParameterTunningControls";
+import React from "react";
+import MobileParamControls from "./customComponents/MobileParamControls";
 
-type PlaygroundProp = {};
+type PlaygroundProp = {
+  isOnMobileScreen: boolean;
+};
 
-export default function Playground(props: PlaygroundProp) {
+export default function Playground({ isOnMobileScreen }: PlaygroundProp) {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
@@ -23,16 +29,20 @@ export default function Playground(props: PlaygroundProp) {
             />
           </div>
           <div className={style.plgHeaderActions}>
-            <PlgControlButtons />
+            <PlgControlButtons isOnMobileScreen={isOnMobileScreen} setOpen={setOpen} />
           </div>
         </div>
         <div className={style.body}>
           <div className={style.editor}>
-            <EditorBox />
+            <EditorBox isOnMobileScreen={isOnMobileScreen} />
           </div>
-          <div className={style.rightControls}>
-            <ParamTunningControls />
-          </div>
+          {isOnMobileScreen ? (
+            <MobileParamControls open={open} setOpen={setOpen} />
+          ) : (
+            <div className={style.rightControls}>
+              <ParamTunningControls />
+            </div>
+          )}
         </div>
       </div>
     </div>

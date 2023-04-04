@@ -1,3 +1,5 @@
+import MicIcon from "@mui/icons-material/Mic";
+
 export default function VoiceInputComponent(props: {}) {
   return (
     <button
@@ -8,7 +10,7 @@ export default function VoiceInputComponent(props: {}) {
     >
       <span className="labelWrap">
         <span className="labelInner">
-          <span className="material-symbols-outlined">mic</span>
+          <MicIcon />
         </span>
       </span>
       <style jsx>
@@ -16,7 +18,7 @@ export default function VoiceInputComponent(props: {}) {
           .voiceInput {
             position: absolute;
             right: 11px;
-            top: 11px;
+            top: 1.2em;
             z-index: 2;
             color: #10a37f;
             background-color: transparent;
