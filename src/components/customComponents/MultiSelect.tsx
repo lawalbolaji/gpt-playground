@@ -4,9 +4,9 @@ import { Chip, ChipProps, styled, TextField } from "@mui/material";
 import Downshift from "downshift";
 
 export default function StopSequenceTags() {
-  const handleSelecetedTags = (items: string[]) => {
+  const handleSelecetedTags = React.useCallback((items: string[]) => {
     console.log(items);
-  };
+  }, [])
 
   return <TagsInput selectedTags={handleSelecetedTags} fullWidth variant="outlined" id="tags" name="tags" placeholder="" label="" />;
 }
@@ -27,6 +27,7 @@ const TagsInput = ({ ...props }) => {
   useEffect(() => {
     setSelectedItem(tags);
   }, [tags]);
+  
   useEffect(() => {
     selectedTags(selectedItem);
   }, [selectedItem, selectedTags]);
