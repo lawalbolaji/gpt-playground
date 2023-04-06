@@ -6,8 +6,7 @@ import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import RestoreIcon from "@mui/icons-material/Restore";
 import React, { SyntheticEvent, useRef } from "react";
 import { $createLineBreakNode, $createParagraphNode, $createTextNode, $getRoot, EditorState, LexicalEditor } from "lexical";
-
-const tokenCount = 100; // will be computed somehow later on
+import { gptConfig, gptPayload, tokenCount } from "../constants";
 
 function getPlainTextFromLexicalNodes(editorState: any) {
   /*
@@ -32,9 +31,10 @@ function getPlainTextFromLexicalNodes(editorState: any) {
 
 type EditorBoxProp = {
   isOnMobileScreen: boolean;
+  state: gptConfig;
 };
 
-export default function EditorBox({ isOnMobileScreen }: EditorBoxProp) {
+export default function EditorBox({ isOnMobileScreen, state: configState }: EditorBoxProp) {
   const editorStateRef = useRef<EditorState>();
   const editorRef = useRef<LexicalEditor>();
 
@@ -65,7 +65,13 @@ export default function EditorBox({ isOnMobileScreen }: EditorBoxProp) {
           fetch("/api/completions", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({}),
+            body: JSON.stringify({
+              prompt: plainTextPrompt,
+              config: {
+                // defaults for now
+                ...configState,
+              },
+            } satisfies gptPayload),
           })
             .then((res) => {
               try {
@@ -81,11 +87,20 @@ export default function EditorBox({ isOnMobileScreen }: EditorBoxProp) {
             .then(({ success: { message: gptResponse } }) => {
               setLoadingGptReponse(false);
               updateEditorState(gptResponse);
+
+              console.log(
+                "Thank you for using this service, unfortunately, we are unable to forward your request to openai due to token cost limitations"
+              );
+              console.log(
+                "However, we are working on a service that generates the code you can use to get the exact completion from gpt with your personal access token "
+              );
+              console.log("In the meantime, here is a copy of your model configuration");
+              console.log({ configState });
             });
         }
       }
     },
-    [updateEditorState]
+    [updateEditorState, configState]
   );
 
   return (

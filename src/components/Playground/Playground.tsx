@@ -1,10 +1,11 @@
-import PlgControlButtons from "./controls/plgControlButtons";
-import EditorBox from "./Editor/editorbox";
-import style from "../styles/playground.module.css";
-import { SearchAndFilter } from "./customComponents/SearchAndFilter";
-import ParamTunningControls from "./controls/ParameterTunningControls";
+import PlgControlButtons from "../controls/plgControlButtons";
+import EditorBox from "../Editor/editorbox";
+import style from "../../styles/playground.module.css";
+import { SearchAndFilter } from "../customComponents/SearchAndFilter";
+import ModelTunningControls from "../controls/ParameterTunningControls";
 import React from "react";
-import MobileParamControls from "./customComponents/MobileParamControls";
+import MobileParamControls from "../customComponents/MobileParamControls";
+import { modelConfigReducer, getInitConfigState } from "../../reducers/modelConfigReducer";
 
 type PlaygroundProp = {
   isOnMobileScreen: boolean;
@@ -12,6 +13,7 @@ type PlaygroundProp = {
 
 export default function Playground({ isOnMobileScreen }: PlaygroundProp) {
   const [open, setOpen] = React.useState(false);
+  const [state, dispatch] = React.useReducer(modelConfigReducer, getInitConfigState());
 
   return (
     <div className={style.wrapper}>
@@ -34,13 +36,13 @@ export default function Playground({ isOnMobileScreen }: PlaygroundProp) {
         </div>
         <div className={style.body}>
           <div className={style.editor}>
-            <EditorBox isOnMobileScreen={isOnMobileScreen} />
+            <EditorBox isOnMobileScreen={isOnMobileScreen} state={state} />
           </div>
           {isOnMobileScreen ? (
-            <MobileParamControls open={open} setOpen={setOpen} />
+            <MobileParamControls open={open} setOpen={setOpen} state={state} dispatch={dispatch} />
           ) : (
             <div className={style.rightControls}>
-              <ParamTunningControls />
+              <ModelTunningControls state={state} dispatch={dispatch} />
             </div>
           )}
         </div>

@@ -1,18 +1,20 @@
-import style from "../styles/navigation.module.css";
-import buttonStyle from "../styles/buttons.module.css";
+import style from "../../styles/navigation.module.css";
+import buttonStyle from "../../styles/buttons.module.css";
 import BoltIcon from "@mui/icons-material/Bolt";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import Link from "next/link";
 
 type navMenuProp = {
   isAuthenticated: boolean;
   isOnMobileScreen: boolean;
+  setOpenNavMenu: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function NavigationMenu({ isAuthenticated, isOnMobileScreen }: navMenuProp) {
+export default function NavigationMenu({ isAuthenticated, isOnMobileScreen, setOpenNavMenu }: navMenuProp) {
   return (
     <div className="navMenu">
       <div className={style.leftMenu}>
@@ -26,19 +28,19 @@ export default function NavigationMenu({ isAuthenticated, isOnMobileScreen }: na
           <></>
         ) : (
           <div className={style.menuContainer}>
-            <a href="#" className={style.navItem}>
+            <a href="https://platform.openai.com/" className={style.navItem}>
               Overview
             </a>
-            <a href="#" className={style.navItem}>
+            <a href="https://platform.openai.com/docs" className={style.navItem}>
               Documentation
             </a>
-            <a href="#" className={style.navItem}>
+            <a href="https://platform.openai.com/examples" className={style.navItem}>
               Examples
             </a>
             {!!isAuthenticated && (
-              <a href="#" className={`${style.navItem} playgroundSelected`}>
+              <Link href="/" className={`${style.navItem} playgroundSelected`}>
                 Playground
-              </a>
+              </Link>
             )}
           </div>
         )}
@@ -49,7 +51,12 @@ export default function NavigationMenu({ isAuthenticated, isOnMobileScreen }: na
           <div>
             <a href="#" role="button">
               <span className={style.btnNode}>
-                <MenuIcon sx={{ fontSize: "2em" }} />
+                <MenuIcon
+                  sx={{ fontSize: "2em" }}
+                  onClick={() => {
+                    setOpenNavMenu(true);
+                  }}
+                />
               </span>
             </a>
           </div>

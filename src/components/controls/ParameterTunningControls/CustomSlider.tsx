@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 interface GenericSliderProp extends Partial<SliderProps> {
   val: number;
   defaultVal: number;
-  setVal: React.Dispatch<React.SetStateAction<number>>;
+  setVal: (val: unknown) => void;
 }
 
 const StyledSlider = styled(Slider)<SliderProps>(({ theme }) => ({
@@ -26,7 +26,7 @@ const StyledSlider = styled(Slider)<SliderProps>(({ theme }) => ({
   },
 }));
 
-export default function SliderControl({ val, setVal, defaultVal, ...rest }: GenericSliderProp) {
+export default function CustomSlider({ val, setVal, defaultVal, ...rest }: GenericSliderProp) {
   return (
     <div>
       <StyledSlider

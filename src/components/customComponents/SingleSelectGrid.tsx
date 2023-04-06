@@ -2,6 +2,7 @@ import React from "react";
 import CompleteModeIcon from "@mui/icons-material/TextSnippetOutlined";
 import InsertModeIcon from "@mui/icons-material/FileDownloadOutlined";
 import EditModeIcon from "@mui/icons-material/AutoFixHighOutlined";
+import { supportedModes } from "../controls/ParameterTunningControls";
 
 export enum singleSelectOptions {
   free_from = "free_from",
@@ -10,8 +11,8 @@ export enum singleSelectOptions {
 }
 
 type SingleSelectGridProp = {
-  selectedOption: singleSelectOptions;
-  setSelectedOption: React.Dispatch<React.SetStateAction<singleSelectOptions>>;
+  selectedOption: supportedModes;
+  setSelectedOption: React.Dispatch<React.SetStateAction<supportedModes>>;
 };
 
 export default function SingleSelectGrid({ selectedOption, setSelectedOption }: SingleSelectGridProp) {
@@ -20,9 +21,9 @@ export default function SingleSelectGrid({ selectedOption, setSelectedOption }: 
       <input
         type="radio"
         id="-radio-freeform"
-        checked={selectedOption === singleSelectOptions.free_from}
+        checked={selectedOption === "complete"}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          e.target.checked && setSelectedOption(singleSelectOptions.free_from);
+          e.target.checked && setSelectedOption("complete");
         }}
       />
       <label htmlFor="-radio-freeform">
@@ -34,9 +35,9 @@ export default function SingleSelectGrid({ selectedOption, setSelectedOption }: 
       <input
         type="radio"
         id="-radio-insert"
-        checked={selectedOption === singleSelectOptions.insert}
+        checked={selectedOption === "insert"}
         onChange={(e: any) => {
-          e.target.checked && setSelectedOption(singleSelectOptions.insert);
+          e.target.checked && setSelectedOption("insert");
         }}
       />
       <label htmlFor="-radio-insert">
@@ -48,9 +49,9 @@ export default function SingleSelectGrid({ selectedOption, setSelectedOption }: 
       <input
         type="radio"
         id="-radio-edit"
-        checked={selectedOption === singleSelectOptions.edit}
+        checked={selectedOption === "edit"}
         onChange={(e: any) => {
-          e.target.checked && setSelectedOption(singleSelectOptions.edit);
+          e.target.checked && setSelectedOption("edit");
         }}
       />
       <label htmlFor="-radio-edit">

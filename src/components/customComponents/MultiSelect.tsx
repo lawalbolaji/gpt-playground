@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 import { Chip, ChipProps, styled, TextField } from "@mui/material";
 import Downshift from "downshift";
 
-export default function StopSequenceTags() {
-  const handleSelecetedTags = React.useCallback((items: string[]) => {
-    console.log(items);
-  }, [])
+type StopSequenceProps = {
+  handleSelecetedTags: (items: string[]) => void;
+  tags: Array<string>;
+};
 
-  return <TagsInput selectedTags={handleSelecetedTags} fullWidth variant="outlined" id="tags" name="tags" placeholder="" label="" />;
+export default function StopSequenceTags({ handleSelecetedTags, tags }: StopSequenceProps) {
+  return (
+    <TagsInput selectedTags={handleSelecetedTags} tags={tags} fullWidth variant="outlined" id="tags" name="tags" placeholder="" label="" />
+  );
 }
 
 const StyledChip = styled(Chip)<ChipProps>(({ theme }) => ({
@@ -27,7 +30,7 @@ const TagsInput = ({ ...props }) => {
   useEffect(() => {
     setSelectedItem(tags);
   }, [tags]);
-  
+
   useEffect(() => {
     selectedTags(selectedItem);
   }, [selectedItem, selectedTags]);
@@ -111,7 +114,7 @@ const TagsInput = ({ ...props }) => {
                     flexWrap: "wrap",
                     overflow: "hidden",
                     padding: "8px 6px",
-                    gap: "4px"
+                    gap: "4px",
                   },
                   ".MuiInputBase-root > input": {
                     display: "flex",

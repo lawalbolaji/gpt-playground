@@ -2,33 +2,14 @@ import styled from "@emotion/styled";
 import { autocompleteClasses } from "@mui/material";
 import React from "react";
 import { StyledAutoComplete, StyledInput } from "./SearchAndFilter";
+import { validModelOptions } from "../controls/ParameterTunningControls";
 
 type modelOptions = {
   title: "string";
   models: model[];
 };
 
-type model = {
-  id: number;
-  label: string;
-};
-
-const supprotedModelOptions = [
-  {
-    title: "GPT-3",
-    models: [
-      { id: 1, label: "text-davinci-003" },
-      { id: 2, label: "text-curie-001" },
-    ],
-  },
-  {
-    title: "Codex",
-    models: [
-      { id: 3, label: "code-davinci-002" },
-      { id: 4, label: "code-cushman-001" },
-    ],
-  },
-];
+export type model = validModelOptions<"complete"> | validModelOptions<"chat">;
 
 type PopperComponentProps = {
   anchorEl?: any;
@@ -41,20 +22,25 @@ const PopperComponent = ({ disablePortal, anchorEl, open, ...other }: PopperComp
   return open ? <StyledAutocompletePopper {...other} /> : null;
 };
 
-export const ModelSelect = () => {
-  const [filled, setFilled] = React.useState(false);
+type ModelSelectProp = {
+  selectedModel: model | null;
+  handleModelUpdate: (model: model) => void;
+  supprotedModelOptions: readonly validModelOptions<"complete">[] | readonly validModelOptions<"chat">[];
+};
 
+export const ModelSelect = ({ selectedModel, handleModelUpdate, supprotedModelOptions }: ModelSelectProp) => {
   return (
     <StyledAutoComplete
       size="small"
       disablePortal
       openOnFocus
-      options={[...supprotedModelOptions[0].models, ...supprotedModelOptions[1].models]}
+      options={supprotedModelOptions}
       noOptionsText="No presets"
-      renderInput={(params) => <StyledInput {...params} InputLabelProps={{ filled }} label="Choose model..." />}
+      renderInput={(params) => <StyledInput {...params} InputLabelProps={{ filled: selectedModel !== null }} label="Choose model..." />}
       PopperComponent={PopperComponent}
-      onChange={(event: React.SyntheticEvent, val: unknown) => {
-        setFilled(!!val);
+      value={selectedModel}
+      onChange={(_: React.SyntheticEvent, val: unknown) => {
+        handleModelUpdate(val as model);
       }}
     />
   );

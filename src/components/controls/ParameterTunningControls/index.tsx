@@ -1,43 +1,30 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import style from "../../../styles/controls.module.css";
 import FreeTextWithCheckBox from "../../customComponents/FreeTextWithCheckBox";
-import { ModelSelect } from "../../customComponents/ModelSelect";
+import { ModelSelect, model } from "../../customComponents/ModelSelect";
 import StopSequenceTags from "../../customComponents/MultiSelect";
 import { SelectProbabilityOption } from "../../customComponents/RegularSelect";
-import SingleSelectGrid, { singleSelectOptions } from "../../customComponents/SingleSelectGrid";
-import SliderControl from "./sliderControl";
+import SingleSelectGrid from "../../customComponents/SingleSelectGrid";
+import ControlWithSlider from "./ControlWithSlider";
+import { supportedModes, completionModels, gptConfig } from "../../constants";
+import { TEMPERATURE, MAX_TOKENS, TOP_P, FREQUENCY_PENALTY, PRESENCE_PENALTY, BEST_OF } from "../../constants";
+import { modelConfigActions } from "../../../reducers/modelConfigReducer";
 
-const defaultTemp = 0.7; // TODO: use a reducer
-const defaultMaxLength = 256;
-const defaultTopP = 1;
-const defaultFreqPenalty = 0;
-const defaultPresPenalty = 0;
-const defaultBestOfCount = 1;
+type ModelTunningControlProps = {
+  state: gptConfig;
+  dispatch: React.Dispatch<modelConfigActions>;
+};
 
-// this helps me toggle the border around each control value independently of the others
-enum controlInputNames {
-  temp = "temp",
-  maxLength = "maxLength",
-  freqPenalty = "freqPenalty",
-  presPenalty = "presPenalty",
-  topP = "topP",
-  bestOfCount = "bestOfCount",
-}
+export default function ModelTunningControls({ state, dispatch }: ModelTunningControlProps) {
+  // TODO: lift editor mode selection out of this component
+  const [selectedOption, setSelectedOption] = React.useState<supportedModes>("edit");
 
-export default function ParamTunningControls() {
-  // right panel controls
-  const [temp, setTemp] = React.useState(defaultTemp);
-  const [maxLength, setMaxLength] = React.useState(defaultMaxLength);
-  const [topP, setTopP] = React.useState(defaultTopP);
-  const [freqPenalty, setFreqPenalty] = React.useState(defaultFreqPenalty);
-  const [presPenalty, setPresPenalty] = React.useState(defaultPresPenalty);
-  const [bestOfCount, setBestOfCount] = React.useState(defaultBestOfCount);
-
-  // to support dynamically adding and removing classes for toggling border around parameter value inputs
-  const [showInputBorder, setShowInputBorder] = React.useState<controlInputNames | undefined>(undefined);
-
-  // insert mode selection
-  const [selectedOption, setSelectedOption] = React.useState<singleSelectOptions>(singleSelectOptions.free_from);
+  const handleSelecetedTags = React.useCallback(
+    (items: string[]) => {
+      dispatch({ type: "stop", data: items });
+    },
+    [dispatch]
+  );
 
   return (
     <div className={style.rightControlsContainer}>
@@ -50,105 +37,96 @@ export default function ParamTunningControls() {
           <div>
             <div className={style.controlLabel}>Model</div>
             <div>
-              <ModelSelect />
+              <ModelSelect
+                selectedModel={state.model}
+                handleModelUpdate={(val: model) => {
+                  dispatch({ type: "model", data: val });
+                }}
+                supprotedModelOptions={completionModels}
+              />
             </div>
           </div>
-          <div className="temperature-control">
-            <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.temp ? "showInputBorder" : undefined} ${
-                style.forSlider
-              }`}
-              onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.temp)}
-              onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
-            >
-              <span className="labelInner">Temperature</span>
-              <input type="text" value={temp} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTemp(+e.target.value)} />
-            </div>
-            <SliderControl val={temp} setVal={setTemp} defaultVal={defaultTemp} min={0} max={1} step={0.01} />
-          </div>
-          <div>
-            <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.maxLength ? "showInputBorder" : undefined} ${
-                style.forSlider
-              }`}
-              onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.maxLength)}
-              onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
-            >
-              <span className="labelInner">Maximum length</span>
-              <input type="text" value={maxLength} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMaxLength(+e.target.value)} />
-            </div>
-            <SliderControl val={maxLength} setVal={setMaxLength} defaultVal={defaultMaxLength} min={1} max={4000} />
-          </div>
+          <ControlWithSlider
+            {...{
+              controlValue: state.temperature,
+              dispatch,
+              dispatchType: "temperature",
+              label: "Temperature",
+              defaultValue: TEMPERATURE,
+              min: 0,
+              max: 1,
+              step: 0.01,
+            }}
+          />
+          <ControlWithSlider
+            {...{
+              controlValue: state.max_tokens,
+              dispatch,
+              dispatchType: "max_tokens",
+              label: "Maximum length",
+              defaultValue: MAX_TOKENS,
+              min: 1,
+              max: 4000,
+            }}
+          />
           <div>
             <div className={style.controlLabel}>Stop sequences</div>
             <div>
-              <StopSequenceTags />
+              <StopSequenceTags handleSelecetedTags={handleSelecetedTags} tags={state.stop} />
             </div>
           </div>
-          <div>
-            <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.topP ? "showInputBorder" : undefined} ${
-                style.forSlider
-              }`}
-              onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.topP)}
-              onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
-            >
-              <span className="labelInner">Top P</span>
-              <input type="text" value={topP} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopP(+e.target.value)} />
-            </div>
-            <SliderControl val={topP} setVal={setTopP} defaultVal={defaultTopP} min={0} max={1} step={0.01} />
-          </div>
-          <div>
-            <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.freqPenalty ? "showInputBorder" : undefined} ${
-                style.forSlider
-              }`}
-              onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.freqPenalty)}
-              onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
-            >
-              <span className="labelInner">Frequency penalty</span>
-              <input
-                type="text"
-                value={freqPenalty}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFreqPenalty(+e.target.value)}
-              />
-            </div>
-            <SliderControl val={freqPenalty} setVal={setFreqPenalty} defaultVal={defaultFreqPenalty} min={0} max={2} step={0.01} />
-          </div>
-          <div>
-            <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.presPenalty ? "showInputBorder" : undefined} ${
-                style.forSlider
-              }`}
-              onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.presPenalty)}
-              onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
-            >
-              <span className="labelInner">Presence penalty</span>
-              <input
-                type="text"
-                value={presPenalty}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPresPenalty(+e.target.value)}
-              />
-            </div>
-            <SliderControl val={presPenalty} setVal={setPresPenalty} defaultVal={defaultPresPenalty} min={0} max={2} step={0.01} />
-          </div>
-          <div>
-            <div
-              className={`${style.controlLabel} ${showInputBorder === controlInputNames.bestOfCount ? "showInputBorder" : undefined} ${
-                style.forSlider
-              }`}
-              onMouseEnter={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(controlInputNames.bestOfCount)}
-              onMouseLeave={(e: MouseEvent<HTMLDivElement>) => setShowInputBorder(undefined)}
-            >
-              <span className="labelInner">Best of</span>
-              <input
-                type="text"
-                value={bestOfCount}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBestOfCount(+e.target.value)}
-              />
-            </div>
-            <SliderControl val={bestOfCount} setVal={setBestOfCount} defaultVal={defaultBestOfCount} min={1} max={20} />
-          </div>
+
+          <ControlWithSlider
+            {...{
+              controlValue: state.top_p,
+              dispatch,
+              dispatchType: "top_p",
+              label: "Top P",
+              defaultValue: TOP_P,
+              min: 0,
+              max: 1,
+              step: 0.01,
+            }}
+          />
+
+          <ControlWithSlider
+            {...{
+              controlValue: state.frequency_penalty,
+              dispatch,
+              dispatchType: "frequency_penalty",
+              label: "Frequency penalty",
+              defaultValue: FREQUENCY_PENALTY,
+              min: 0,
+              max: 2,
+              step: 0.01,
+            }}
+          />
+
+          <ControlWithSlider
+            {...{
+              controlValue: state.presence_penalty,
+              dispatch,
+              dispatchType: "presence_penalty",
+              label: "Presence penalty",
+              defaultValue: PRESENCE_PENALTY,
+              min: 0,
+              max: 2,
+              step: 0.01,
+            }}
+          />
+
+          <ControlWithSlider
+            {...{
+              controlValue: state.best_of,
+              dispatch,
+              dispatchType: "best_of",
+              label: "Best of",
+              defaultValue: BEST_OF,
+              min: 1,
+              max: 20,
+            }}
+          />
+
           <div>
             <div className={style.controlLabel}>Inject start text</div>
             <div>
@@ -161,6 +139,7 @@ export default function ParamTunningControls() {
               <FreeTextWithCheckBox />
             </div>
           </div>
+          {/* TODO: verify and then scrap this control, doesn't seem to affect the model behavior */}
           <div>
             <div className={style.controlLabel}>Show probabilities</div>
             <div>
@@ -177,42 +156,6 @@ export default function ParamTunningControls() {
           </div>
         </div>
       </div>
-      <style jsx>
-        {`
-          .labelInner {
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 20px;
-            flex: 1 0 auto;
-          }
-
-          .labelInner + input {
-            flex: 0 1 auto;
-            width: 46px;
-            padding: 4px 5px 3px;
-            text-align: right;
-            line-height: 15px;
-            font-variant: tabular-nums;
-            font-size: 14px;
-            background-clip: padding-box;
-            background-color: #fff;
-            border: 1px solid transparent;
-            border-radius: 3px;
-            box-sizing: border-box;
-            color: var(--gray-800);
-            display: inline-block;
-            font-family: var(--sans-serif);
-            font-weight: 400;
-            margin: 0;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            vertical-align: top;
-          }
-
-          .showInputBorder > input {
-            border-color: var(--gray-300);
-          }
-        `}
-      </style>
     </div>
   );
 }

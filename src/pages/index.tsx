@@ -4,13 +4,19 @@ import buttonStyles from "../styles/buttons.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
-import NavigationMenu from "../components/Navigation";
-import Playground from "../components/Playground";
+import NavigationMenu from "../components/Navigation/Navigation";
+import Playground from "../components/Playground/Playground";
 import { useMediaQuery } from "@mui/material";
+import MobileNavMenu from "../components/mobilenavmenu/MobileNavMenu";
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
   const isOnMobileScreen = useMediaQuery("(max-width: 649px)");
+  const [openNavMenu, setOpenNavMenu] = React.useState(false);
+
+  const handleCloseNavMenu = (event: {}, reason: "backdropClick" | "escapeKeyDown") => {
+    setOpenNavMenu(false);
+  };
 
   return (
     <>
@@ -22,10 +28,10 @@ export default function Home() {
       </Head>
       <main>
         <div className={styles.appWrapper}>
-          <NavigationMenu isAuthenticated={!!user?.sub} isOnMobileScreen={isOnMobileScreen}/>
+          <NavigationMenu isAuthenticated={!!user?.sub} isOnMobileScreen={isOnMobileScreen} setOpenNavMenu={setOpenNavMenu} />
 
           {!!user?.sub ? (
-            <Playground isOnMobileScreen={isOnMobileScreen}/>
+            <Playground isOnMobileScreen={isOnMobileScreen} />
           ) : (
             <div className={styles.description}>
               <div className={styles.bodyText}>
@@ -39,7 +45,7 @@ export default function Home() {
                   <div className="message-body">Please log in to access this page</div>
                 </div>
                 <div className="auth-buttons">
-                  <a href={"/api/auth/login"} className={`${buttonStyles.btn} ${buttonStyles.btnSmall}`}>
+                  <a href={"/api/auth/login"} className={`${buttonStyles.btn} ${buttonStyles.btnSmall} loginBtn`}>
                     <span className="btn-label-wrapper">
                       <span className="btn-label-inner">Log in</span>
                     </span>
@@ -82,13 +88,18 @@ export default function Home() {
                     background-color: #ececf1;
                     color: #353740;
                   }
+
+                  .loginBtn {
+                    background-color: #10a37f !important;
+                    color: #fff !important;
+                  }
                 `}
               </style>
             </div>
           )}
         </div>
 
-        {/* TODO: you need a modal here */}
+        {isOnMobileScreen ? <MobileNavMenu openNavMenu={openNavMenu} handleCloseNavMenu={handleCloseNavMenu} /> : <></>}
       </main>
     </>
   );
