@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { autocompleteClasses } from "@mui/material";
 import React from "react";
 import { StyledAutoComplete, StyledInput } from "./SearchAndFilter";
-import { validModelOptions } from "../controls/ParameterTunningControls";
+import { validModelOptions } from "../constants";
 
 type modelOptions = {
   title: "string";

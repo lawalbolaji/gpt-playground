@@ -1,7 +1,8 @@
 import React from "react";
 import style from "../../../styles/controls.module.css";
 import CustomSlider from "./CustomSlider";
-import { gptConfig, modelConfigActions } from ".";
+import { modelConfigActions } from "../../../reducers/modelConfigReducer";
+import { gptConfig } from "../../constants";
 
 type ControlWithSliderProps = {
   controlValue: number;
