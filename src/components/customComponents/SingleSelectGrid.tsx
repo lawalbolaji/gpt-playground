@@ -4,12 +4,6 @@ import InsertModeIcon from "@mui/icons-material/FileDownloadOutlined";
 import EditModeIcon from "@mui/icons-material/AutoFixHighOutlined";
 import { supportedModes } from "../constants";
 
-export enum singleSelectOptions {
-  free_from = "free_from",
-  insert = "insert",
-  edit = "edit",
-}
-
 type SingleSelectGridProp = {
   selectedOption: supportedModes;
   setSelectedOption: React.Dispatch<React.SetStateAction<supportedModes>>;
