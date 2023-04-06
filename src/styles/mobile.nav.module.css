@@ -1,0 +1,72 @@
+.navItem {
+  color: #10a37f;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 20px;
+  margin-top: 0.5em;
+  padding: 8px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.mobileMenu {
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  color: #6e6e80;
+}
+
+.mobileMenuHeader {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.cancelBtn {
+  background-color: white;
+  border: none;
+  color: green;
+  font-size: 1.2em;
+  line-height: 24px;
+  padding: 6px 10px;
+  margin-right: -4px;
+}
+
+.userDetails {
+  color: #565869;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  max-width: 300px;
+  text-align: right;
+  text-decoration: none;
+}
+
+.userSection {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  margin: 20px;
+  padding: 2px;
+}
+
+.avatar {
+  align-items: center;
+  display: flex;
+  height: 28px;
+  justify-content: center;
+  line-height: 20px;
+  width: 28px;
+  margin-right: 8px;
+  object-fit: contain;
+}
