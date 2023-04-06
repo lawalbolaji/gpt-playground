@@ -1,0 +1,15 @@
+.customFreeText {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
+}
+
+.customFreeText.focused {
+  border: 2px solid #10a37f;
+}
+
+.checkboxPos {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+}

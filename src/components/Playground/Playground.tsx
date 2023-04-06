@@ -1,18 +1,17 @@
-import PlgControlButtons from "../controls/plgControlButtons";
-import EditorBox from "../Editor/editorbox";
-import style from "../../styles/playground.module.css";
-import { SearchAndFilter } from "../customComponents/SearchAndFilter";
-import ModelTunningControls from "../controls/ParameterTunningControls";
 import React from "react";
-import MobileParamControls from "../customComponents/MobileParamControls";
-import { modelConfigReducer, getInitConfigState } from "../../reducers/modelConfigReducer";
+import style from "@/styles/playground.module.css";
+import ActionBtnGroup from "./Controls/ActionBtnGroup";
+import { SearchAndFilter } from "../Shared/SearchAndFilter";
+import { modelConfigReducer, getInitConfigState } from "../../reducers/modelconfigs/modelConfigReducer";
+import { MobileControlsDrawer, ModelTunningControls } from "./Controls/ModelTunningControls";
+import { EditorContainer } from "./Editor";
 
 type PlaygroundProp = {
   isOnMobileScreen: boolean;
 };
 
-export default function Playground({ isOnMobileScreen }: PlaygroundProp) {
-  const [open, setOpen] = React.useState(false);
+export const Playground = ({ isOnMobileScreen }: PlaygroundProp) => {
+  const [openMobileControls, setOpenMobileControls] = React.useState(false);
   const [state, dispatch] = React.useReducer(modelConfigReducer, getInitConfigState());
 
   return (
@@ -31,15 +30,15 @@ export default function Playground({ isOnMobileScreen }: PlaygroundProp) {
             />
           </div>
           <div className={style.plgHeaderActions}>
-            <PlgControlButtons isOnMobileScreen={isOnMobileScreen} setOpen={setOpen} />
+            <ActionBtnGroup isOnMobileScreen={isOnMobileScreen} setOpenMobileControls={setOpenMobileControls} />
           </div>
         </div>
         <div className={style.body}>
           <div className={style.editor}>
-            <EditorBox isOnMobileScreen={isOnMobileScreen} state={state} />
+            <EditorContainer isOnMobileScreen={isOnMobileScreen} state={state} />
           </div>
           {isOnMobileScreen ? (
-            <MobileParamControls open={open} setOpen={setOpen} state={state} dispatch={dispatch} />
+            <MobileControlsDrawer open={openMobileControls} setOpen={setOpenMobileControls} state={state} dispatch={dispatch} />
           ) : (
             <div className={style.rightControls}>
               <ModelTunningControls state={state} dispatch={dispatch} />
@@ -49,4 +48,4 @@ export default function Playground({ isOnMobileScreen }: PlaygroundProp) {
       </div>
     </div>
   );
-}
+};

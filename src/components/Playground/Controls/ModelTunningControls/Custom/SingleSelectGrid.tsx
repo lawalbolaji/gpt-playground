@@ -2,14 +2,14 @@ import React from "react";
 import CompleteModeIcon from "@mui/icons-material/TextSnippetOutlined";
 import InsertModeIcon from "@mui/icons-material/FileDownloadOutlined";
 import EditModeIcon from "@mui/icons-material/AutoFixHighOutlined";
-import { supportedModes } from "../constants";
+import { supportedModes } from "../../../../../constants/constants";
 
 type SingleSelectGridProp = {
   selectedOption: supportedModes;
   setSelectedOption: React.Dispatch<React.SetStateAction<supportedModes>>;
 };
 
-export default function SingleSelectGrid({ selectedOption, setSelectedOption }: SingleSelectGridProp) {
+export const SingleSelectGrid = ({ selectedOption, setSelectedOption }: SingleSelectGridProp) => {
   return (
     <div className="singleSelectContainer">
       <input
@@ -93,4 +93,4 @@ export default function SingleSelectGrid({ selectedOption, setSelectedOption }: 
       `}</style>
     </div>
   );
-}
+};

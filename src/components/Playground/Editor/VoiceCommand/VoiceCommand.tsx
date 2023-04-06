@@ -1,6 +1,6 @@
 import MicIcon from "@mui/icons-material/Mic";
 
-export default function VoiceInputComponent(props: {}) {
+export const VoiceCommand = (props: {}) => {
   return (
     <button
       className="voiceInput"
@@ -50,4 +50,4 @@ export default function VoiceInputComponent(props: {}) {
       </style>
     </button>
   );
-}
+};

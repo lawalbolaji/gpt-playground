@@ -31,7 +31,7 @@ const mobileMenuItems = [
   { data: "Logout", url: "/api/auth/logout" },
 ];
 
-export default function MobileNavMenu({ openNavMenu, handleCloseNavMenu }: MobileNavMenuProps) {
+export const MobileNavMenu = ({ openNavMenu, handleCloseNavMenu }: MobileNavMenuProps) => {
   return (
     <Modal open={openNavMenu} onClose={handleCloseNavMenu} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
       <div>
@@ -71,4 +71,4 @@ export default function MobileNavMenu({ openNavMenu, handleCloseNavMenu }: Mobil
       </div>
     </Modal>
   );
-}
+};

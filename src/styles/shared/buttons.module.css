@@ -41,4 +41,12 @@
   background-color: #10a37f;
 }
 
+.plgActionBtn {
+  background-color: #ececf1;
+  color: #353740;
+}
 
+.horzBtn {
+  display: flex;
+  align-self: center;
+}

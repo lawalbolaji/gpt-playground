@@ -1,0 +1,16 @@
+.main {
+  box-sizing: border-box;
+  color: #353740;
+  color: var(--gray-800);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.appWrapper {
+  background-color: white;
+  min-height: 100vh;
+  color: var(--gray-800);
+  display: flex;
+  flex-flow: column;
+}

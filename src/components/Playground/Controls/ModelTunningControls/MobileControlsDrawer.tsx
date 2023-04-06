@@ -1,9 +1,8 @@
 import * as React from "react";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import ModelTunningControls from "../controls/ParameterTunningControls";
-import { modelConfigActions } from "../../reducers/modelConfigReducer";
-import { gptConfig } from "../constants";
+import { modelConfigActions } from "../../../../reducers/modelconfigs/modelConfigReducer";
+import { gptConfig } from "../../../../constants/constants";
+import { ModelTunningControls } from ".";
 
 type MobileParamControlProps = {
   open: boolean;
@@ -12,7 +11,7 @@ type MobileParamControlProps = {
   dispatch: React.Dispatch<modelConfigActions>;
 };
 
-export default function MobileParamControls({ open, setOpen, state, dispatch }: MobileParamControlProps) {
+export const MobileControlsDrawer = ({ open, setOpen, state, dispatch }: MobileParamControlProps) => {
   const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (event.type === "keydown" && ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")) {
       return;
@@ -26,4 +25,4 @@ export default function MobileParamControls({ open, setOpen, state, dispatch }: 
       <ModelTunningControls state={state} dispatch={dispatch} />
     </Drawer>
   );
-}
+};

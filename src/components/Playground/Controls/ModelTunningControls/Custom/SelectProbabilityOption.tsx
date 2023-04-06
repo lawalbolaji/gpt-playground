@@ -11,16 +11,12 @@ type validProbOption = {
   label: string;
 };
 
+// TODO: add theming support, v2
 const StyledSelect = styled(Select)<SelectProps>(({ theme }) => ({
-  // TODO: add theming support, v2
   height: "36px",
   color: "#6e6e80",
   fontSize: 14,
 }));
-
-export const RegularSelectComponent = (props: SelectProps) => {
-  return <StyledSelect {...props} />;
-};
 
 const menuprops = {
   sx: {
@@ -48,12 +44,12 @@ export const SelectProbabilityOption = ({ options }: SelectProbabilityOptionProp
   };
 
   return (
-    <RegularSelectComponent fullWidth value={selectedOption} MenuProps={menuprops} onChange={handleMenuChange}>
+    <StyledSelect fullWidth value={selectedOption} MenuProps={menuprops} onChange={handleMenuChange}>
       {options.map((option) => (
         <MenuItem key={option.id} value={option.id}>
           {option.label}
         </MenuItem>
       ))}
-    </RegularSelectComponent>
+    </StyledSelect>
   );
 };

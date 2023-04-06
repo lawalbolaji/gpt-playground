@@ -1,13 +1,8 @@
 import styled from "@emotion/styled";
 import { autocompleteClasses } from "@mui/material";
 import React from "react";
-import { StyledAutoComplete, StyledInput } from "./SearchAndFilter";
-import { validModelOptions } from "../constants";
-
-type modelOptions = {
-  title: "string";
-  models: model[];
-};
+import { StyledAutoComplete, StyledInput } from "../../../../Shared/SearchAndFilter";
+import { validModelOptions } from "../../../../../constants/constants";
 
 export type model = validModelOptions<"complete"> | validModelOptions<"chat">;
 
@@ -16,6 +11,28 @@ type PopperComponentProps = {
   disablePortal?: boolean;
   open: boolean;
 };
+
+const StyledAutocompletePopper = styled("div")(({ theme }) => ({
+  [`& .${autocompleteClasses.paper}`]: {
+    boxShadow: "none",
+    margin: "10px 0 0",
+    color: "inherit",
+    fontSize: 13,
+  },
+  [`& .${autocompleteClasses.listbox}`]: {
+    padding: 0,
+    border: "1px solid #ececf1",
+    borderRadius: "5px",
+    [`& .${autocompleteClasses.option}`]: {
+      minHeight: "auto",
+      alignItems: "flex-start",
+      padding: 8,
+    },
+    [`& .${autocompleteClasses.option}:not(:last-child)`]: {
+      borderBottom: "1px solid #ececf1",
+    },
+  },
+}));
 
 // TODO: add a label to the dropdowns e.g Examples
 const PopperComponent = ({ disablePortal, anchorEl, open, ...other }: PopperComponentProps) => {
@@ -46,24 +63,3 @@ export const ModelSelect = ({ selectedModel, handleModelUpdate, supprotedModelOp
   );
 };
 
-const StyledAutocompletePopper = styled("div")(({ theme }) => ({
-  [`& .${autocompleteClasses.paper}`]: {
-    boxShadow: "none",
-    margin: "10px 0 0",
-    color: "inherit",
-    fontSize: 13,
-  },
-  [`& .${autocompleteClasses.listbox}`]: {
-    padding: 0,
-    border: "1px solid #ececf1",
-    borderRadius: "5px",
-    [`& .${autocompleteClasses.option}`]: {
-      minHeight: "auto",
-      alignItems: "flex-start",
-      padding: 8,
-    },
-    [`& .${autocompleteClasses.option}:not(:last-child)`]: {
-      borderBottom: "1px solid #ececf1",
-    },
-  },
-}));

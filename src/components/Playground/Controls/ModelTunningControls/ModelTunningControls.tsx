@@ -1,21 +1,21 @@
 import React from "react";
-import style from "../../../styles/controls.module.css";
-import FreeTextWithCheckBox from "../../customComponents/FreeTextWithCheckBox";
-import { ModelSelect, model } from "../../customComponents/ModelSelect";
-import StopSequenceTags from "../../customComponents/MultiSelect";
-import { SelectProbabilityOption } from "../../customComponents/RegularSelect";
-import SingleSelectGrid from "../../customComponents/SingleSelectGrid";
-import ControlWithSlider from "./ControlWithSlider";
-import { supportedModes, completionModels, gptConfig } from "../../constants";
-import { TEMPERATURE, MAX_TOKENS, TOP_P, FREQUENCY_PENALTY, PRESENCE_PENALTY, BEST_OF } from "../../constants";
-import { modelConfigActions } from "../../../reducers/modelConfigReducer";
+import style from "@/styles/controls.module.css";
+import FreeTextWithCheckBox from "./Custom/FreeTextWithCheckBox";
+import { ModelSelect, model } from "./Custom/ModelSelect";
+import StopSequenceTags from "./Custom/StopSequenceTags";
+import { SelectProbabilityOption } from "./Custom/SelectProbabilityOption";
+import { SingleSelectGrid } from "./Custom/SingleSelectGrid";
+import ControlWithSlider from "./Custom/ControlWithSlider";
+import { supportedModes, completionModels, gptConfig } from "../../../../constants/constants";
+import { TEMPERATURE, MAX_TOKENS, TOP_P, FREQUENCY_PENALTY, PRESENCE_PENALTY, BEST_OF } from "../../../../constants/constants";
+import { modelConfigActions } from "../../../../reducers/modelconfigs/modelConfigReducer";
 
 type ModelTunningControlProps = {
   state: gptConfig;
   dispatch: React.Dispatch<modelConfigActions>;
 };
 
-export default function ModelTunningControls({ state, dispatch }: ModelTunningControlProps) {
+export const ModelTunningControls = ({ state, dispatch }: ModelTunningControlProps) => {
   // TODO: lift editor mode selection out of this component
   const [selectedOption, setSelectedOption] = React.useState<supportedModes>("edit");
 
@@ -158,4 +158,4 @@ export default function ModelTunningControls({ state, dispatch }: ModelTunningCo
       </div>
     </div>
   );
-}
+};

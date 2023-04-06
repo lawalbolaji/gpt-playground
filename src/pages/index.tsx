@@ -1,15 +1,13 @@
-import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-import buttonStyles from "../styles/buttons.module.css";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
-import Diversity2Icon from "@mui/icons-material/Diversity2";
-import NavigationMenu from "../components/Navigation/Navigation";
-import Playground from "../components/Playground/Playground";
+import Head from "next/head";
+import styles from "@/styles/index.module.css";
 import { useMediaQuery } from "@mui/material";
-import MobileNavMenu from "../components/mobilenavmenu/MobileNavMenu";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import UnauthenticatedScreen from "../components/Shared/UnauthenticatedScreen";
+import { Playground } from "../components/Playground";
+import { FullscreenNavMenu, MobileNavMenu } from "../components/Navigation";
 
-export default function Home() {
+export default function Index() {
   const { user, error, isLoading } = useUser();
   const isOnMobileScreen = useMediaQuery("(max-width: 649px)");
   const [openNavMenu, setOpenNavMenu] = React.useState(false);
@@ -28,75 +26,8 @@ export default function Home() {
       </Head>
       <main>
         <div className={styles.appWrapper}>
-          <NavigationMenu isAuthenticated={!!user?.sub} isOnMobileScreen={isOnMobileScreen} setOpenNavMenu={setOpenNavMenu} />
-
-          {!!user?.sub ? (
-            <Playground isOnMobileScreen={isOnMobileScreen} />
-          ) : (
-            <div className={styles.description}>
-              <div className={styles.bodyText}>
-                <div className="logo">
-                  <a role="button" href="#">
-                    <Diversity2Icon />
-                  </a>
-                </div>
-                <div className="auth-required-message">
-                  <h4 className="message-header">Authentication Required</h4>
-                  <div className="message-body">Please log in to access this page</div>
-                </div>
-                <div className="auth-buttons">
-                  <a href={"/api/auth/login"} className={`${buttonStyles.btn} ${buttonStyles.btnSmall} loginBtn`}>
-                    <span className="btn-label-wrapper">
-                      <span className="btn-label-inner">Log in</span>
-                    </span>
-                  </a>
-                  <a href={"/api/auth/login"} className={`${buttonStyles.btn} ${buttonStyles.btnSmall}`}>
-                    <span className="btn-label-wrapper">
-                      <span className="btn-label-inner">Sign up</span>
-                    </span>
-                  </a>
-                </div>
-              </div>
-
-              <style jsx>
-                {`
-                  a .material-symbols-outlined {
-                    font-size: 36px;
-                    color: var(--gray-600);
-                  }
-
-                  h4 {
-                    padding: 8px;
-                  }
-
-                  .auth-required-message {
-                    margin-bottom: 1em;
-                    margin-top: 4px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    font-size: 18px;
-                  }
-
-                  .auth-buttons {
-                    display: flex;
-                    align-items: center;
-                    gap: 1em;
-                  }
-
-                  .auth-buttons a {
-                    background-color: #ececf1;
-                    color: #353740;
-                  }
-
-                  .loginBtn {
-                    background-color: #10a37f !important;
-                    color: #fff !important;
-                  }
-                `}
-              </style>
-            </div>
-          )}
+          <FullscreenNavMenu isAuthenticated={!!user?.sub} isOnMobileScreen={isOnMobileScreen} setOpenNavMenu={setOpenNavMenu} />
+          {!!user?.sub ? <Playground isOnMobileScreen={isOnMobileScreen} /> : <UnauthenticatedScreen />}
         </div>
 
         {isOnMobileScreen ? <MobileNavMenu openNavMenu={openNavMenu} handleCloseNavMenu={handleCloseNavMenu} /> : <></>}

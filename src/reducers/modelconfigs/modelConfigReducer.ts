@@ -1,4 +1,4 @@
-import { gptConfig } from "../components/constants";
+import { gptConfig } from "../../constants/constants";
 
 export const getInitConfigState = (): gptConfig => ({
   model: "text-davinci-003",

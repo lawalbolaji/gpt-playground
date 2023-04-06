@@ -1,5 +1,5 @@
-import style from "../../styles/navigation.module.css";
-import buttonStyle from "../../styles/buttons.module.css";
+import style from "@/styles/navigation.module.css";
+import buttonStyle from "@/styles/shared/buttons.module.css";
 import BoltIcon from "@mui/icons-material/Bolt";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
@@ -14,7 +14,7 @@ type navMenuProp = {
   setOpenNavMenu: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function NavigationMenu({ isAuthenticated, isOnMobileScreen, setOpenNavMenu }: navMenuProp) {
+export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNavMenu }: navMenuProp) => {
   return (
     <div className="navMenu">
       <div className={style.leftMenu}>
@@ -180,4 +180,4 @@ export default function NavigationMenu({ isAuthenticated, isOnMobileScreen, setO
       </style>
     </div>
   );
-}
+};

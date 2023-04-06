@@ -1,55 +1,17 @@
-import React, { useRef } from "react";
-import style from "../../styles/editor.module.css";
+import React from "react";
+import style from "@/styles/editor.module.css";
 import { InitialEditorStateType, LexicalComposer } from "@lexical/react/LexicalComposer";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { EditorState, LexicalEditor } from "lexical";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import VoiceInputComponent from "./voiceInput";
+import { VoiceCommandComponent } from "./VoiceCommand";
 
 const theme = {
   //add themes here
 };
-
-/* 
-  Editor State JSON example:
-  {
-  "root": {
-    "children": [
-      {
-        "children": [],
-        "direction": null,
-        "format": "",
-        "indent": 0,
-        "type": "paragraph",
-        "version": 1
-      }
-    ],
-    "direction": null,
-    "format": "",
-    "indent": 0,
-    "type": "root",
-    "version": 1
-  }
-}
-*/
-
-function GPTResponsePlugin(props: {}) {
-  const [editor] = useLexicalComposerContext();
-
-  // update editor state here:
-
-  /*
-      with jsonstring representing editor state
-        const editorState = editor.parseEditorState(editorStateJSONString);
-        editor.setEditorState(editorState);
-   */
-
-  return null;
-}
 
 type EditorProps = {
   editorRef: React.MutableRefObject<LexicalEditor | undefined>;
@@ -57,7 +19,7 @@ type EditorProps = {
   loadInitEditorState: () => InitialEditorStateType | undefined;
 };
 
-export default function Editor(props: EditorProps) {
+export const Editor = (props: EditorProps) => {
   const { editorStateRef, loadInitEditorState, editorRef } = props;
 
   const handleEditorError = React.useCallback((error: Error, editor: LexicalEditor) => {
@@ -97,10 +59,9 @@ export default function Editor(props: EditorProps) {
           />
           <OnChangePlugin onChange={handleEditorChange} />
           <HistoryPlugin />
-          <GPTResponsePlugin />
         </LexicalComposer>
       </div>
-      <VoiceInputComponent />
+      <VoiceCommandComponent />
     </div>
   );
 }
