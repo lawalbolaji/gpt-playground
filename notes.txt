@@ -1,0 +1,8 @@
+TODOS:
+    Deployment and Local Dev:
+        Update readme for deploy on Docker and Vercel
+        Update main Readme
+    
+    UI Tests:
+        Add tests for UI components
+        Test that app state is adequately updated as components state changes
