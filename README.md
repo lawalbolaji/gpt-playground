@@ -12,15 +12,15 @@
 #### Docker (preferred)
 1. Clone the repo: `git clone git@github.com:lawalbolaji/gpt-playground.git`
 2. CD to the project's root directory
-3. Copy the .env.local.example file into a .env.local file
-4. Create Auth0 credentials and add those credentials to your .env.local file
+3. Copy the `.env.local.example` file into a `.env.local` file
+4. Create Auth0 credentials and add those credentials to your `.env.local` file
 5. Boot up your docker container: `docker-compose -f dev.docker-compose.yml up -d`
 
 #### Local Machine with nodejs
 1. Clone the repo: `git clone git@github.com:lawalbolaji/gpt-playground.git`
 2. CD to the project's root directory
 3. Copy the `.env.local.example` file into a `.env.local file`
-4. Create Auth0 credentials and add those credentials to your `.env.local file`
+4. Create Auth0 credentials and add those credentials to your `.env.local` file
 5. RUN `npm ci`
 
 ### Production
