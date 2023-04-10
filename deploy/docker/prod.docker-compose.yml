@@ -1,0 +1,11 @@
+version: "1.0"
+
+services:
+  gpt-client:
+    build:
+      context: ./
+      dockerfile: ./prod.Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
