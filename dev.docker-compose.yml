@@ -1,0 +1,14 @@
+version: "1.0"
+
+services:
+  gpt-client:
+    build:
+      context: ./
+      dockerfile: ./dev.Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    env_file:
+      - .env.local
