@@ -39,6 +39,12 @@
   background-color: #fff;
 }
 
+.editorContainerErrors {
+  font-size: 0.6em;
+  color: red;
+  margin-top: 0.4em;
+}
+
 .draftEditorContainer {
   background-color: hsla(0, 0%, 100%, 0);
   border-left: 0.1px solid transparent;

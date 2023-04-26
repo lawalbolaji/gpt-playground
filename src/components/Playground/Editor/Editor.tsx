@@ -17,10 +17,11 @@ type EditorProps = {
   editorRef: React.MutableRefObject<LexicalEditor | undefined>;
   editorStateRef: React.MutableRefObject<EditorState | undefined>;
   loadInitEditorState: () => InitialEditorStateType | undefined;
+  error: string | null;
 };
 
 export const Editor = (props: EditorProps) => {
-  const { editorStateRef, loadInitEditorState, editorRef } = props;
+  const { editorStateRef, loadInitEditorState, editorRef, error } = props;
 
   const handleEditorError = React.useCallback((error: Error, editor: LexicalEditor) => {
     console.error({ error, editor });
@@ -64,4 +65,6 @@ export const Editor = (props: EditorProps) => {
       <VoiceCommandComponent />
     </div>
   );
-}
+};
+
+// `${style.contentEditableContainer} ${error !== null ? `${style.editorError}` : undefined}`

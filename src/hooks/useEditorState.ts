@@ -12,6 +12,7 @@ export const useEditorState = ({ configState }: hookprop) => {
   const editorRef = useRef<LexicalEditor>();
 
   const [loadingGptResponse, setLoadingGptReponse] = React.useState(false);
+  const [gptCompletionError, setGptCompletionError] = React.useState<string | null>(null);
 
   // TODO: Add support for saving user sessions and loading state from server
   const loadInitEditorState = React.useCallback(() => undefined, []);
@@ -35,6 +36,7 @@ export const useEditorState = ({ configState }: hookprop) => {
         const plainTextPrompt = getPlainTextFromLexicalNodes(JSON.parse(JSON.stringify(editorStateRef.current)));
         if (plainTextPrompt !== undefined) {
           setLoadingGptReponse(true);
+          setGptCompletionError(null);
 
           fetch("/api/completions", {
             method: "POST",
@@ -42,7 +44,6 @@ export const useEditorState = ({ configState }: hookprop) => {
             body: JSON.stringify({
               prompt: plainTextPrompt,
               config: {
-                // defaults for now
                 ...configState,
               },
             } satisfies gptPayload),
@@ -54,22 +55,18 @@ export const useEditorState = ({ configState }: hookprop) => {
                 }
 
                 return res.json();
-              } catch (error: any) {
-                console.error(error);
+              } catch (error) {
+                res.json().then(({ error: { message } }) => {
+                  setGptCompletionError(message);
+                });
               }
             })
-            .then(({ success: { message: gptResponse } }) => {
+            .then((response: { data: { completion: string } }) => {
               setLoadingGptReponse(false);
-              updateEditorState(gptResponse);
 
-              console.log(
-                "Thank you for using this service, unfortunately, we are unable to forward your request to openai due to token cost limitations"
-              );
-              console.log(
-                "However, we are working on a service that generates the code you can use to get the exact completion from gpt with your personal access token"
-              );
-              console.log("In the meantime, here is a copy of your model configuration");
-              console.log({ configState });
+              if (!!response) {
+                updateEditorState(response.data.completion);
+              }
             });
         }
       }
@@ -77,5 +74,5 @@ export const useEditorState = ({ configState }: hookprop) => {
     [updateEditorState, configState]
   );
 
-  return { handleClickSubmit, updateEditorState, editorRef, editorStateRef, loadInitEditorState, loadingGptResponse };
+  return { handleClickSubmit, updateEditorState, editorRef, editorStateRef, loadInitEditorState, loadingGptResponse, gptCompletionError };
 };
