@@ -1,6 +1,8 @@
 <h1 align="center">GPT Playground</h1>
 
-<p align="center">Gpt playground is an interractive playground for developers to test the full capabilities of openai's gpt-based models. It is accessible on desktop and mobile  devices with rich support for both classes of devices, enabling developers access to the capabilities of Open API's GPT-based models even while on the go. You can use the Playground to test your use cases and when you are ready, click on view code to get the generated code for your application based on the current configuration on the playground. You can use this code to add openai's GPT-3 model capabilities to your applications</p>
+<p align="center">Gpt playground is an interractive playground for developers to test the full capabilities of openai's gpt-based models. It is accessible on desktop and mobile  devices with rich support for both classes of devices, enabling developers access to the capabilities of Open API's GPT-based models even while on the go.</p>
+
+<p align="center">You can use the Playground to test your use cases and when you are ready, click on view code to get the generated code for your application based on the current configuration on the playground. You can use this code to add openai's GPT-3 model capabilities to your applications</p>
 
 
 <h3 align="center">
