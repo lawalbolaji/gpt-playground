@@ -32,7 +32,8 @@ You can start using gpt-playground [here](https://gpt-playground-three.vercel.ap
 > cp .env.example .env.local
 ```
 3. Create Auth0 credentials [here](https://auth0.com/docs/quickstart/webapp/nextjs/01-login) and add those credentials to your `.env.local` file
-4. Boot up your docker container:
+4. Get OpenAI API Key [here](https://platform.openai.com/account/api-keys) and add those credentials to your `.env.local` file
+5. Boot up your docker container:
 ```
 > docker-compose -f dev.docker-compose.yml up -d
 ```
@@ -47,11 +48,12 @@ You can start using gpt-playground [here](https://gpt-playground-three.vercel.ap
 > cp .env.example .env.local
 ```
 3. Create Auth0 credentials [here](https://auth0.com/docs/quickstart/webapp/nextjs/01-login) and add those credentials to your `.env.local` file
-4. Install NodeJs dependencenies:
+4. Get OpenAI API Key [here](https://platform.openai.com/account/api-keys) and add those credentials to your `.env.local` file
+5. Install NodeJs dependencenies:
 ```
 > npm ci
 ```
-5. Boot up:
+6. Boot up:
 ```
 > npm run dev
 ```
