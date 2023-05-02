@@ -1,0 +1,156 @@
+.modalHeader {
+  margin: 20px 24px 16px;
+  margin-right: 40px;
+  color: var(--gray-900);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.modalBody {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 16px 24px 24px;
+  box-sizing: border-box;
+}
+
+.instructions {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin-top: 24px;
+}
+
+.modalFooter {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  margin: 32px 24px 24px;
+  margin-top: 24px;
+}
+
+.mobileModalFooter {
+  justify-content: center;
+}
+
+.modalFooter > button {
+  background-color: #ececf1;
+  color: #353740;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 12px;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 400;
+  justify-content: center;
+  position: relative;
+  transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+  user-select: none;
+}
+
+.codeSampleSelectWrap {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.codeSampleSelectVal {
+  font-size: 14px;
+  line-height: 20px;
+  max-width: 150px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.codeSampleSelect {
+  appearance: none;
+  background: none;
+  border: none;
+  border-radius: 3px;
+  bottom: 0;
+  cursor: pointer;
+  font-family: var(--sans-serif);
+  font-size: 14px;
+  left: 0;
+  margin: 0;
+  max-width: 120px;
+  opacity: 0;
+  padding: 5px 24px 5px 6px;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  text-align-last: right;
+  top: 0;
+  transition: background-color 0.3s;
+}
+
+.codeSampleCopy {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  margin-left: 8px;
+}
+
+.codeSampleCopy > button {
+  color: var(--gray-300);
+  padding: 2px 5px;
+  background: transparent;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 400;
+  justify-content: center;
+  position: relative;
+  transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+  user-select: none;
+}
+
+.btnLabelWrap {
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  display: flex;
+  width: 100%;
+}
+
+.btnNode {
+  display: flex;
+  line-height: 1;
+}
+
+.btnLabelInner {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 0.4em;
+}
+
+.codeSampleHeader {
+  align-items: center;
+  background: var(--gray-800);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: var(--gray-300);
+  display: flex;
+  padding: 6px 10px 6px 12px;
+}
+
+.codeSampleTitle {
+  flex: 1 1 auto;
+  margin-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
