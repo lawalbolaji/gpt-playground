@@ -1,0 +1,47 @@
+.scModalHeader {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 20px 24px 16px;
+  color: var(--gray-900);
+  font-weight: 700;
+}
+
+.scModalHelper {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 16px 24px 24px;
+}
+
+.scInputWrapper {
+  margin-top: 16px;
+}
+
+.scModalBtns {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  margin: 32px 24px 24px;
+}
+
+.mobileModalBtns {
+  justify-content: center;
+}
+
+.scInputLabel {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.labelMain {
+  margin-right: 8px;
+}
+
+.labelGuide {
+  color: var(--gray-600);
+}
