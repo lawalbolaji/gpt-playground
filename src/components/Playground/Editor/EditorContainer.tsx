@@ -1,30 +1,24 @@
 import React from "react";
 import style from "@/styles/editor.module.css";
-import { gptConfig } from "../../../constants/constants";
-import { useEditorState } from "../../../hooks/useEditorState";
 import { Editor } from "./Editor";
 import { Token } from "./Token";
 import { ActionBtnGroup } from "./ActionBtnGroup";
+import { LexicalEditor } from "lexical";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 type EditorContainerProps = {
   isOnMobileScreen: boolean;
-  state: gptConfig;
+  handleClickSubmit: (editor: LexicalEditor) => (e: React.SyntheticEvent<Element, Event>) => void;
+  loadingGptResponse: boolean;
+  gptCompletionError: string | null;
 };
 
-export const EditorContainer = ({ isOnMobileScreen, state: configState }: EditorContainerProps) => {
-  const { editorRef, editorStateRef, handleClickSubmit, loadingGptResponse, loadInitEditorState, gptCompletionError } = useEditorState({
-    configState,
-  });
-
+export const EditorContainer = ({ isOnMobileScreen, handleClickSubmit, loadingGptResponse, gptCompletionError }: EditorContainerProps) => {
+  const [editor] = useLexicalComposerContext();
   return (
     <>
       <div className={style.editorBody}>
-        <Editor
-          editorStateRef={editorStateRef}
-          loadInitEditorState={loadInitEditorState}
-          editorRef={editorRef}
-          error={gptCompletionError}
-        />
+        <Editor error={gptCompletionError} />
       </div>
 
       {gptCompletionError ? (
@@ -36,7 +30,11 @@ export const EditorContainer = ({ isOnMobileScreen, state: configState }: Editor
       )}
 
       <div className={style.editorFooter}>
-        <ActionBtnGroup isOnMobileScreen={isOnMobileScreen} handleClickSubmit={handleClickSubmit} loadingGptResponse={loadingGptResponse} />
+        <ActionBtnGroup
+          isOnMobileScreen={isOnMobileScreen}
+          handleClickSubmit={handleClickSubmit(editor)}
+          loadingGptResponse={loadingGptResponse}
+        />
         <Token />
       </div>
     </>

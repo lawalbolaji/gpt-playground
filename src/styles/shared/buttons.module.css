@@ -50,3 +50,11 @@
   display: flex;
   align-self: center;
 }
+
+.btnShrink {
+  padding: 6px 9px !important;
+}
+
+button.btnShrink:hover {
+  background-color: #d9d9e3;
+}
