@@ -36,20 +36,15 @@ export default function AccountActionsWidget({ anchorEl, handleClose, userMeta }
           <Divider sx={{ margin: ".4em 0" }} />
 
           {links.map((data, idx) => (
-            <>
-              <a
-                key={idx}
-                className={`${styles.menuItem} ${data.text === "Logout" ? styles.flexContainer : undefined}`}
-                href={data.to}
-                role="button"
-              >
+            <React.Fragment key={idx}>
+              <a className={`${styles.menuItem} ${data.text === "Logout" ? styles.flexContainer : undefined}`} href={data.to} role="button">
                 <span className={styles.menuItemWrapper}>
                   <span className={styles.btnNode}>{data.icon}</span>
                   <span className={styles.navSupportBtnText}>{data.text} &zwj;</span>
                 </span>
               </a>
               {idx === 2 && <Divider sx={{ margin: ".4em 0" }} />}
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>
