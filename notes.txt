@@ -1,8 +1,14 @@
 TODOS:
+    - add tests: test save, test view code, test preset loading
+
+    Next features:
+        - implement:
+            - transition for save code modal - modal should emerge from the bottom of the screen
+            - history: show 30 day history in editor (no need for database, this can stay in browser)
+            - download history: allow users download history as json, csv or pdf
+            - share: share presets with other users
+        - add tests: test history, and share
+
     Deployment and Local Dev:
         Update readme for deploy on Docker and Vercel
         Update main Readme
-    
-    UI Tests:
-        Add tests for UI components
-        Test that app state is adequately updated as components state changes
