@@ -33,7 +33,6 @@ export default function ViewCode({ open, setOpen, configState, setOpenCopyCodeSn
   const [editor] = useLexicalComposerContext();
   const [selectedLanguage, setSelectedLanguage] = useState<supportedLanguages>("node.js");
 
-  // TODO: figure out what is mutating config state continuosly
   const formatedCode = React.useMemo(() => {
     const editorState = editor.getEditorState();
     const plainTextPrompt = getPlainTextFromLexicalNodes(JSON.parse(JSON.stringify(editorState))) || "";

@@ -28,10 +28,6 @@ const TagsInput = ({ ...props }) => {
   const [selectedItem, setSelectedItem] = React.useState<string[]>([]);
 
   useEffect(() => {
-    setSelectedItem(tags);
-  }, [tags]);
-
-  useEffect(() => {
     selectedTags(selectedItem);
   }, [selectedItem, selectedTags]);
 
