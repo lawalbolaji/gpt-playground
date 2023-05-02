@@ -2,8 +2,7 @@
 
 <p align="center">Gpt playground is an interractive playground for developers to test the full capabilities of openai's gpt-based models. It is accessible on desktop and mobile  devices with rich support for both classes of devices, enabling developers access to the capabilities of Open API's GPT-based models even while on the go.</p>
 
-<img width="1371" alt="Screenshot 2023-04-10 at 22 26 04" src="https://user-images.githubusercontent.com/22568024/231002127-21c71c04-d3f8-4e92-94a4-6cc29ebb80ab.png">
-
+<img width="1330" alt="Screenshot 2023-05-02 at 14 10 46" src="https://user-images.githubusercontent.com/22568024/235676168-360ce45f-5fff-4244-93e8-5f093958f22e.png">
 
 ## Running the application
 
