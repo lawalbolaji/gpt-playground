@@ -17,7 +17,7 @@
 
 .menuContainer {
   margin: 0 10px 0 24px;
-  max-width: 700px;
+  min-width: 500px;
   align-items: center;
   flex: 0 1;
   justify-content: space-around;
@@ -54,7 +54,7 @@
   line-height: 20px;
   margin: 2px 0 0 1em;
   text-decoration: none;
-  color: #10a37f
+  color: #10a37f;
 }
 
 .navUpgradeBtn img {
@@ -81,14 +81,13 @@
 .avatar {
   margin-right: 8px;
   align-items: center;
-  /* background: var(--gray-800); */
-  /* color: #fff; */
   display: flex;
   font-size: 14px;
   justify-content: center;
   line-height: 20px;
   border-radius: 100px;
   object-fit: contain;
+  overflow: hidden;
 }
 
 .btnNode {
@@ -125,4 +124,97 @@
 
 .navSupportBtnText {
   margin-left: 5px !important;
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.menuItemWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  opacity: 1;
+}
+.popoverInner {
+  background: inherit;
+  border-radius: 4px;
+  position: relative;
+}
+
+.widgetContainer {
+  font-size: 14px;
+  min-width: 200px;
+  padding: 5px 0;
+  text-align: left;
+}
+
+.widgetContainer a:hover {
+  background: #e6f3f3;
+  cursor: pointer;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--gray-900);
+  font-size: 14px;
+  padding: 0.4em 1em;
+}
+
+.userName {
+  color: #202123;
+  font-weight: 700;
+}
+
+.userEmail {
+  color: #565869;
+  font-size: 13px;
+  font-weight: 400;
+  margin-top: 3px;
+}
+
+.navMenu {
+  display: flex;
+  height: var(--app-nav-height);
+  padding: 0 24px;
+  font-size: 14px;
+  color: var(--gray-600);
+  border-bottom: 1px solid #ececf1;
+}
+
+.authHeaderMenuWrapper {
+  align-items: center;
+  display: flex;
+}
+
+.authHeaderMenu {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 64px;
+}
+
+.authSignupBtn {
+  margin-left: 24px;
+  background-color: #10a37f;
+  color: #fff;
+}
+
+.authLoginHeader {
+  cursor: pointer;
+  font-size: 14px;
+  align-items: center;
+  display: flex;
+  color: var(--gray-600);
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.btnLabelInner {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

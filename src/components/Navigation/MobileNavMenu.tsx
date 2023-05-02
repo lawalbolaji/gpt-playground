@@ -1,13 +1,16 @@
 import { Modal } from "@mui/material";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import ClearIcon from "@mui/icons-material/Clear";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import Link from "next/link";
 import mobileNavStyle from "../../styles/mobile.nav.module.css";
+import { UserProfile } from "@auth0/nextjs-auth0/client";
+import Image from "next/image";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 type MobileNavMenuProps = {
   openNavMenu: boolean;
   handleCloseNavMenu: (event: {}, reason: "backdropClick" | "escapeKeyDown") => void;
+  userMeta?: UserProfile;
 };
 
 const style = {
@@ -31,7 +34,7 @@ const mobileMenuItems = [
   { data: "Logout", url: "/api/auth/logout" },
 ];
 
-export const MobileNavMenu = ({ openNavMenu, handleCloseNavMenu }: MobileNavMenuProps) => {
+export const MobileNavMenu = ({ openNavMenu, handleCloseNavMenu, userMeta }: MobileNavMenuProps) => {
   return (
     <Modal open={openNavMenu} onClose={handleCloseNavMenu} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
       <div>
@@ -61,7 +64,7 @@ export const MobileNavMenu = ({ openNavMenu, handleCloseNavMenu }: MobileNavMenu
           </div>
           <div className={mobileNavStyle.userSection}>
             <div className={mobileNavStyle.avatar}>
-              <AccountCircleOutlinedIcon sx={{ fontSize: "2em" }} />
+              {!!userMeta?.picture ? <Image src={userMeta.picture} alt="profile" width={32} height={32} /> : <AccountCircleOutlinedIcon />}
             </div>
             <div className={mobileNavStyle.userDetails}>
               <div className="user-details-text">Personal</div>

@@ -26,11 +26,11 @@ export default function Index() {
       </Head>
       <main className={styles.main}>
         <div className={styles.appWrapper}>
-          <FullscreenNavMenu isAuthenticated={!!user?.sub} isOnMobileScreen={isOnMobileScreen} setOpenNavMenu={setOpenNavMenu} />
+          <FullscreenNavMenu isAuthenticated={!!user?.sub} userMeta={user} isOnMobileScreen={isOnMobileScreen} setOpenNavMenu={setOpenNavMenu} />
           {!!user?.sub ? <Playground isOnMobileScreen={isOnMobileScreen} /> : <UnauthenticatedScreen />}
         </div>
 
-        {isOnMobileScreen ? <MobileNavMenu openNavMenu={openNavMenu} handleCloseNavMenu={handleCloseNavMenu} /> : <></>}
+        {isOnMobileScreen ? <MobileNavMenu openNavMenu={openNavMenu} handleCloseNavMenu={handleCloseNavMenu} userMeta={user}/> : <></>}
       </main>
     </>
   );

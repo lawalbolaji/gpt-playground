@@ -1,22 +1,39 @@
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { UserProfile } from "@auth0/nextjs-auth0/client";
 import style from "@/styles/navigation.module.css";
 import buttonStyle from "@/styles/shared/buttons.module.css";
 import BoltIcon from "@mui/icons-material/Bolt";
+import MenuIcon from "@mui/icons-material/Menu";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import AccountActionsWidget from "./AccountActionsWidet/AccountActionsWidget";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import MenuIcon from "@mui/icons-material/Menu";
-import Link from "next/link";
 
 type navMenuProp = {
   isAuthenticated: boolean;
   isOnMobileScreen: boolean;
   setOpenNavMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  userMeta?: UserProfile;
 };
 
-export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNavMenu }: navMenuProp) => {
+type linkMeta = {
+  to: string;
+  text: string;
+};
+const links: Array<linkMeta> = [
+  { to: "https://platform.openai.com/", text: "Overview" },
+  { to: "https://platform.openai.com/docs", text: "Documentation" },
+  { to: "https://platform.openai.com/docs/api-reference", text: "API Reference" },
+  { to: "https://platform.openai.com/examples", text: "Examples" },
+];
+
+export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNavMenu, userMeta }: navMenuProp) => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
+
   return (
-    <div className="navMenu">
+    <div className={style.navMenu}>
       <div className={style.leftMenu}>
         <div className={style.branding}>
           <a role="button" href="#">
@@ -28,17 +45,14 @@ export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNa
           <></>
         ) : (
           <div className={style.menuContainer}>
-            <a href="https://platform.openai.com/" className={style.navItem}>
-              Overview
-            </a>
-            <a href="https://platform.openai.com/docs" className={style.navItem}>
-              Documentation
-            </a>
-            <a href="https://platform.openai.com/examples" className={style.navItem}>
-              Examples
-            </a>
+            {links.map((data, idx) => (
+              <a key={idx} href={data.to} className={style.navItem}>
+                {data.text}
+              </a>
+            ))}
+
             {!!isAuthenticated && (
-              <Link href="/" className={`${style.navItem} playgroundSelected`}>
+              <Link href="/" className={style.navItem} style={{ color: "var(--green-600)" }}>
                 Playground
               </Link>
             )}
@@ -48,6 +62,17 @@ export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNa
 
       {isOnMobileScreen ? (
         <div className={style.rightMenu}>
+          <div className={style.navSupportContainer} style={{ marginRight: "20px" }}>
+            <a href="#">
+              <span className={style.btnLabelWrap}>
+                <span className={style.btnNode}>
+                  <HelpOutlineOutlinedIcon sx={{ fontSize: "1.3rem" }} />
+                </span>
+                <span className={style.navSupportBtnText}>Help &zwj;</span>
+              </span>
+            </a>
+          </div>
+
           <div>
             <a href="#" role="button">
               <span className={style.btnNode}>
@@ -66,7 +91,7 @@ export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNa
           {isAuthenticated ? (
             <>
               <div className={style.navUpgradeContainer}>
-                <a role="button" href="#" className={style.navUpgradeBtn}>
+                <a role="button" href="https://platform.openai.com/account/billing/overview" className={style.navUpgradeBtn}>
                   <BoltIcon />
                   Upgrade
                 </a>
@@ -75,41 +100,49 @@ export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNa
                 <a href="#">
                   <span className={style.btnLabelWrap}>
                     <span className={style.btnNode}>
-                      <HelpOutlineOutlinedIcon />
+                      <HelpOutlineOutlinedIcon sx={{ fontSize: "1.3rem" }} />
                     </span>
                     <span className={style.navSupportBtnText}>Help &zwj;</span>
                   </span>
                 </a>
               </div>
-              <div className={style.navUserContainer}>
+              <div
+                className={style.navUserContainer}
+                onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+                  setAnchorEl(event.currentTarget);
+                }}
+              >
                 <div className={style.avatar}>
-                  <AccountCircleOutlinedIcon />
+                  {!!userMeta?.picture ? (
+                    <Image src={userMeta.picture} alt="profile" width={32} height={32} />
+                  ) : (
+                    <AccountCircleOutlinedIcon />
+                  )}
                 </div>
                 <div className={style.userDetails}>
                   <div className={style.userDetailsText}>Personal</div>
                 </div>
               </div>
-              <div className={style.navSupportContainer}>
-                <a href={"/api/auth/logout"} role="button">
-                  <span className={style.btnLabelWrap}>
-                    <span className={style.btnNode}>
-                      <LogoutOutlinedIcon />
-                    </span>
-                    <span className={style.navSupportBtnText}>logout &zwj;</span>
-                  </span>
-                </a>
-              </div>
+              {!!userMeta?.name && !!userMeta?.email && (
+                <AccountActionsWidget
+                  anchorEl={anchorEl}
+                  handleClose={() => {
+                    setAnchorEl(null);
+                  }}
+                  userMeta={{ name: userMeta?.name, email: userMeta?.email }}
+                />
+              )}
             </>
           ) : (
             <>
-              <div className="auth-header-menu-wrapper">
-                <div className="auth-header-menu">
-                  <div className="auth-login-header">
+              <div className={style.authHeaderMenuWrapper}>
+                <div className={style.authHeaderMenu}>
+                  <div className={style.authLoginHeader}>
                     <a href={"/api/auth/login"}>Log in</a>
                   </div>
-                  <a className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.bgPrimary} auth-signup-btn`}>
-                    <span className="btn-label-wrapper">
-                      <span className="btn-label-inner">Sign up &zwj;</span>
+                  <a className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${buttonStyle.bgPrimary} ${style.authSignupBtn}`}>
+                    <span className={style.btnLabelWrap}>
+                      <span className={style.btnLabelInner}>Sign up &zwj;</span>
                     </span>
                   </a>
                 </div>
@@ -118,66 +151,6 @@ export const FullscreenNavMenu = ({ isAuthenticated, isOnMobileScreen, setOpenNa
           )}
         </div>
       )}
-
-      <div className="mobile-menu-toggl"></div>
-      <style jsx>
-        {`
-          .playgroundSelected {
-            color: #10a37f;
-          }
-
-          .navMenu {
-            display: flex;
-            height: var(--app-nav-height);
-            padding: 0 24px;
-            font-size: 14px;
-            color: var(--gray-600);
-            border-bottom: 1px solid #ececf1;
-          }
-
-          .auth-header-menu-wrapper {
-            align-items: center;
-            display: flex;
-          }
-
-          .auth-header-menu {
-            align-items: center;
-            display: flex;
-            flex-wrap: nowrap;
-            margin-left: 64px;
-          }
-
-          .auth-signup-btn {
-            margin-left: 24px;
-            background-color: #10a37f;
-            color: #fff;
-          }
-
-          .auth-login-header {
-            cursor: pointer;
-            font-size: 14px;
-            align-items: center;
-            display: flex;
-            color: var(--gray-600);
-            padding: 10px 0;
-            text-decoration: none;
-          }
-
-          .btn-label-wrapper {
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            display: flex;
-            width: 100%;
-          }
-
-          .btn-label-inner {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-          }
-        `}
-      </style>
     </div>
   );
 };
