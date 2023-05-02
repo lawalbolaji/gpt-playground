@@ -36,7 +36,7 @@ const TagsInput = ({ ...props }) => {
   }, [selectedItem, selectedTags]);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement> | React.BaseSyntheticEvent<HTMLInputElement>) => {
-    if ((event as KeyboardEvent).key === "Tab") {
+    if ((event as KeyboardEvent).key === "Tab" || (event as KeyboardEvent).key === "Enter") {
       event.preventDefault();
       const newSelectedItem = [...selectedItem];
       const duplicatedValues = newSelectedItem.indexOf(event.target.value.trim());
