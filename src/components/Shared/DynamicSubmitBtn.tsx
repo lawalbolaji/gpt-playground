@@ -8,6 +8,7 @@ type DynamicBtnProps = {
 };
 
 export const DynamicSubmitButton = ({ loadingState, handleClickSubmit }: DynamicBtnProps) => {
+  // TODO: actually render two different button to allow user cancel request midway
   return (
     <button
       className={`${buttonStyle.btn} ${buttonStyle.btnSmall} ${loadingState ? undefined : buttonStyle.bgPrimary} ${style.submitBtn} ${
